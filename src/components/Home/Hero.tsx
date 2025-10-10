@@ -51,6 +51,10 @@ export const Hero = () => {
 
   return (
     <div className="relative w-full h-[100vh] bg-black overflow-clip">
+
+      {/* <div className='w-[40.5rem] h-[40.5rem] absolute  top-1/2 left-1/2 transform -translate-1/2 '>
+        <Image src={"/main.png"} width={500} height={500} alt='rohan thapa' className='w-full h-full object-contain brightness-50' />
+      </div> */}
       {/* Triangle Grid */}
       <div className="absolute inset-0 grid grid-cols-58 gap-0 z-0">
         {triangles.map((_, idx) => {
