@@ -30,35 +30,35 @@ export const projectsData: Project[] = [
     title: "Edtraa",
     role: "Full Stack Development",
     link: "https://www.edtraa.com",
-    image: "/edtraa.png",
+    image: "/works/edtraa.png",
   },
   {
     id: 2,
-    title: "Event Scout",
-    role: "Full Stack + Dashboard Design",
-    link: "https://event-scout.vercel.app",
-    image: "/edtraa.png",
+    title: "Quasar Energy Consultant",
+    role: "Full Stack Development",
+    link: "https://quasar.rohanthapa.com.np",
+    image: "/works/quasar.png",
   },
   {
     id: 3,
-    title: "Notes Management System",
-    role: "MERN Stack Project",
-    link: "#",
-    image: "/edtraa.png",
+    title: "Klixsoft",
+    role: "Frontend Development",
+    link: "https://klixsoft.com",
+    image: "/works/klixsoft.png",
   },
   {
     id: 4,
-    title: "Thrift Bookstore",
-    role: "Spring Boot + React Integration",
-    link: "#",
-    image: "/edtraa.png",
+    title: "Altripmart",
+    role: "Frontend Development",
+    link: "https://altripmart.com",
+    image: "/works/altripmart.png",
   },
   {
     id: 5,
     title: "Portfolio Website",
     role: "Frontend & Motion Design",
     link: "#",
-    image: "/edtraa.png",
+    image: "/works/edtraa.png",
   },
 ];
 
@@ -141,7 +141,7 @@ export const Projects = () => {
                         }
                         alt="Project Preview"
                         fill
-                        className="object-cover rounded-2xl"
+                        className="object-contain rounded-2xl"
                         priority
                       />
                     </motion.div>
