@@ -111,6 +111,7 @@ html, body{
 @media screen and (max-width: 639px) {
   html {
     font-size: 4vw;
+    scroll-behavior: smooth;
   }
 }
 @media screen and (min-width: 640px) and (max-width: 1279px) {
