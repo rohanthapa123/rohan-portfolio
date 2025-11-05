@@ -115,7 +115,7 @@ export const Projects = () => {
           {/* 🔸 Floating Preview Image */}
           <div className="pointer-events-none fixed top-0 left-0 z-50">
             <motion.div
-              className="w-[28rem] h-[18rem] rounded-2xl overflow-hidden shadow-2xl"
+              className="w-[28rem] h-[14rem] rounded-2xl overflow-hidden shadow-2xl"
               style={{
                 x: springX,
                 y: springY,
@@ -141,7 +141,7 @@ export const Projects = () => {
                         }
                         alt="Project Preview"
                         fill
-                        className="object-contain rounded-2xl"
+                        className="object-cover rounded-2xl"
                         priority
                       />
                     </motion.div>

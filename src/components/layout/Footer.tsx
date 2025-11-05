@@ -53,7 +53,7 @@ export const Footer = () => {
   return (
     <div className="relative w-full h-[50vh] bg-black overflow-clip">
       {/* Animated grid background */}
-      <div className="absolute inset-0 grid grid-cols-58 gap-0 z-0">
+      <div className="absolute inset-0 grid grid-cols-58 gap-0 z-50">
         {triangles.map((_, idx) => {
           const isHighlighted = highlighted.has(idx);
           return (
@@ -75,12 +75,12 @@ export const Footer = () => {
 
       {/* Footer content */}
       <MaxWidthWrapper>
-        <div className="text-white relative z-50">
+        <div className="text-white ">
           <div className="pt-6 pb-[5rem] flex items-start justify-between ">
             {/* Left navigation column */}
-            <div className="flex flex-col gap-1 w-fit">
+            <div className="flex flex-col gap-1 w-fit relative z-50">
               {navLinks.map((link) => (
-                <div key={link.label} className="w-fit">
+                <div key={link.label} className="w-fit ">
                   <Link href={link.href}>
                     <WavyText text={link.label} />
                   </Link>
@@ -91,7 +91,7 @@ export const Footer = () => {
             {/* Right column */}
             <div className="flex items-start gap-5 w-fit">
               {/* Social + email */}
-              <div className="flex flex-col gap-1 w-fit">
+              <div className="flex flex-col gap-1 w-fit relative z-50">
                 {socialLinks.map((social) => (
                   <div key={social.label} className="w-fit">
                     <Link href={social.href} target="_blank">
@@ -107,7 +107,7 @@ export const Footer = () => {
               </div>
 
               {/* Message block */}
-              <div className="flex flex-col gap-1">
+              <div className="flex flex-col gap-1 relative z-50">
                 <div className="w-fit h-fit text-xl font-medium">
                   <WavyText text="Let’s grab some coffee" />
                 </div>
@@ -121,7 +121,7 @@ export const Footer = () => {
           {/* Bottom footer bar */}
           <div className="flex items-center justify-between pointer-events-none">
             <p className="w-fit">LOGO HERE</p>
-            <p className="flex items-center w-fit pointer-events-auto">
+            <p className="flex items-center w-fit pointer-events-auto relative z-50">
               <WavyText text="Rohan Thapa" />
               &nbsp;&copy; {new Date().getFullYear()}
             </p>
