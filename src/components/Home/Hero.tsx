@@ -87,10 +87,10 @@ export const Hero = () => {
           transition={{ delay: 0.8 }}
         >
           <motion.div
-            className="absolute w-[20.5rem] h-[27.5rem] top-[25%] right-[48%] transform translate-x-1/2 bg-slate-800 pointer-event-none -z-10"
+            className="absolute w-[20.5rem] h-[27.5rem] top-[20%] right-[48%] transform translate-x-1/2 bg-slate-800 pointer-event-none -z-10"
             variants={item}
           >
-
+            <Image src={"/images/rohan.jpg"} width={500} height={500} alt='rohan thapa' className='w-full h-full object-cover brightness-80' />
           </motion.div>
 
           <motion.p
