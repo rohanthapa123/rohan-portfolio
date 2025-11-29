@@ -87,7 +87,7 @@
 }
 
 body {
-  font-family:  Roboto, Arial,Helvetica, sans-serif;
+  font-family: Roboto, Arial, Helvetica, sans-serif;
   @apply font-sans;
 }
 
@@ -101,19 +101,33 @@ html {
   /* -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; */
 }
-html, body{
+
+html,
+body {
   background-color: black;
-  overflow-x: clip; /* Use clip to avoid creating a scroll container that breaks sticky */
-  overscroll-behavior: none;
+  overflow-x: clip;
+  /* Use clip to avoid creating a scroll container that breaks sticky */
+  /* overscroll-behavior: none; */
   -webkit-overflow-scrolling: auto;
+  /* scroll-behavior: smooth; */
+  /* overflow: hidden; */
 }
+
+[data-scroll-container] {
+  min-height: 100vh;
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
 
 @media screen and (max-width: 639px) {
   html {
     font-size: 4vw;
-    scroll-behavior: smooth;
+    /* scroll-behavior: smooth; */
   }
 }
+
 @media screen and (min-width: 640px) and (max-width: 1279px) {
   html {
     font-size: 1.7vw;
@@ -127,8 +141,10 @@ html, body{
 
   /* Optional: Ensure the element is still scrollable */
   .scrollbar-none {
-    -ms-overflow-style: none; /* Hide scrollbar in IE/Edge */
-    scrollbar-width: none; /* Hide scrollbar in Firefox */
+    -ms-overflow-style: none;
+    /* Hide scrollbar in IE/Edge */
+    scrollbar-width: none;
+    /* Hide scrollbar in Firefox */
   }
 
   .autofill-transparent {
@@ -212,6 +228,7 @@ html, body{
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
@@ -219,8 +236,13 @@ html, body{
 
 
 @keyframes spin-slow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .animate-spin-slow {

@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import { Fira_Code, Roboto } from "next/font/google";
 import "./globals.css";
 import { ReactQueryProvider } from "@/providers/ReactQueryProvider";
+import { SmoothScrollProvider } from "@/providers/SmoothScrollProvider";
 
 const roboto = Roboto({
   variable: "--font-roboto",
@@ -111,7 +112,9 @@ export default function RootLayout({
         <ReactQueryProvider>
           <PageTransition>
             <Navbar />
+            {/* <SmoothScrollProvider> */}
             {children}
+            {/* </SmoothScrollProvider> */}
             <Footer />
           </PageTransition>
         </ReactQueryProvider>

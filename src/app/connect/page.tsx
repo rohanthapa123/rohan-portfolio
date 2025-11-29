@@ -63,7 +63,7 @@ export default function ConnectPage() {
   };
 
   return (
-    <div className="bg-black text-white relative pt-[10rem] pb-12">
+    <div className="bg-black text-white relative pt-[10rem] pb-12" data-scroll-section>
       <SpotlightGrid />
 
       <MaxWidthWrapper>

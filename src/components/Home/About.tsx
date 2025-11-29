@@ -1,3 +1,79 @@
+// "use client";
+// import { MaxWidthWrapper } from "../common/MaxWidthWrapper";
+// import Image from "next/image";
+// import { SpotlightGrid } from "../common/SpotlightGrid";
+
+// export const About = () => {
+//     return (
+//         <section id="about-section" data-scroll-section className="py-24 bg-black text-white relative group">
+//             <SpotlightGrid />
+//             <MaxWidthWrapper>
+//                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+//                     {/* Left Column */}
+//                     <div
+//                         data-scroll
+//                         data-scroll-sticky
+//                         data-scroll-target="#about-section"
+//                         className="space-y-8 pointer-events-none"
+//                     >
+//                         <div className="flex items-baseline gap-4">
+//                             <h2 className="text-[8rem] leading-[0.8] uppercase font-semibold tracking-tighter pointer-events-none">
+//                                 About Me
+//                             </h2>
+//                         </div>
+//                         <p className="text-xl text-white/60 leading-relaxed max-w-md font-sans pl-6 pointer-events-none">
+//                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat cum, libero aperiam necessitatit.
+
+//                             Reiciendis, ut magnam modi neque nulla, saepe amet, nam provident laudantium fugit sint porro.
+//                         </p>
+//                     </div>
+
+
+//                     {/* Right Column - Masonry Grid */}
+//                     <div className="grid grid-cols-2 gap-4">
+//                         <div className="space-y-4">
+//                             <div className="relative h-64 w-full overflow-hidden grayscale hover:grayscale-0 transition-all duration-500">
+//                                 <Image
+//                                     src="/works/edtraa.png"
+//                                     alt="About 1"
+//                                     fill
+//                                     className="object-cover"
+//                                 />
+//                             </div>
+//                             <div className="relative h-64 w-full overflow-hidden grayscale hover:grayscale-0 transition-all duration-500">
+//                                 <Image
+//                                     src="/works/quasar.png"
+//                                     alt="About 2"
+//                                     fill
+//                                     className="object-cover"
+//                                 />
+//                             </div>
+//                         </div>
+//                         <div className="space-y-4 pt-12">
+//                             <div className="relative h-64 w-full overflow-hidden grayscale hover:grayscale-0 transition-all duration-500">
+//                                 <Image
+//                                     src="/works/klixsoft.png"
+//                                     alt="About 3"
+//                                     fill
+//                                     className="object-cover"
+//                                 />
+//                             </div>
+//                             <div className="relative h-64 w-full overflow-hidden grayscale hover:grayscale-0 transition-all duration-500">
+//                                 <Image
+//                                     src="/works/altripmart.png"
+//                                     alt="About 4"
+//                                     fill
+//                                     className="object-cover"
+//                                 />
+//                             </div>
+//                         </div>
+//                     </div>
+//                 </div>
+//             </MaxWidthWrapper>
+//         </section>
+//     );
+// };
+
 "use client";
 import { MaxWidthWrapper } from "../common/MaxWidthWrapper";
 import Image from "next/image";
