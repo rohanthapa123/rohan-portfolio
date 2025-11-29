@@ -76,8 +76,13 @@ export const Projects = () => {
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      x.set(e.clientX + 60); // small right offset
-      y.set(e.clientY - 80); // small upward offset
+      const width = window.innerWidth;
+      if (e.clientX > width / 2) {
+        x.set(width / 2 + 50);
+      } else {
+        x.set(e.clientX + 60);
+      }
+      y.set(e.clientY - 80);
     };
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
@@ -97,8 +102,7 @@ export const Projects = () => {
                 onMouseEnter={() => setHovered(project.id)}
                 onMouseLeave={() => setHovered(null)}
                 className={`py-8 px-8 flex items-center justify-between border-t border-white/20 
-                  ${
-                    index === projectsData.length - 1 ? "border-b" : ""
+                  ${index === projectsData.length - 1 ? "border-b" : ""
                   } transition-all duration-300 hover:bg-white/5 cursor-pointer`}
               >
                 <p className="text-5xl">{project.title}</p>
@@ -107,19 +111,22 @@ export const Projects = () => {
                   <>
                     <ArrowRight className="size-8 -rotate-45 cursor-pointer hover:translate-x-1 hover:-translate-y-1 transition-transform duration-200" />
                   </>
-              </div>
-                </Link>
+                </div>
+              </Link>
             ))}
           </div>
 
           {/* 🔸 Floating Preview Image */}
           <div className="pointer-events-none fixed top-0 left-0 z-50">
             <motion.div
-              className="w-[28rem] h-[14rem] rounded-2xl overflow-hidden shadow-2xl"
+              className="w-[28rem] h-[18rem] rounded-2xl overflow-hidden shadow-2xl"
               style={{
                 x: springX,
                 y: springY,
               }}
+              initial={{ opacity: 0, scale: 0.2 }}
+              animate={{ opacity: hovered ? 1 : 0, scale: hovered ? 1 : 0.2 }}
+              transition={{ duration: 0.3 }}
             >
               <div className="relative w-full h-full">
                 <AnimatePresence initial={false} mode="sync">

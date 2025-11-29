@@ -4,6 +4,7 @@ import { PageTransition } from "@/components/layout/PageTransition";
 import type { Metadata } from "next";
 import { Fira_Code, Roboto } from "next/font/google";
 import "./globals.css";
+import { ReactQueryProvider } from "@/providers/ReactQueryProvider";
 
 const roboto = Roboto({
   variable: "--font-roboto",
@@ -107,11 +108,13 @@ export default function RootLayout({
       <body
         className={`${roboto.variable} ${fira_code.variable} antialiased`}
       >
-        <PageTransition>
-          <Navbar />
-          {children}
-          <Footer/>
-        </PageTransition>
+        <ReactQueryProvider>
+          <PageTransition>
+            <Navbar />
+            {children}
+            <Footer />
+          </PageTransition>
+        </ReactQueryProvider>
       </body>
     </html>
   );

@@ -103,7 +103,7 @@ html {
 }
 html, body{
   background-color: black;
-  overflow-x: hidden; /* ❌ block scroll on body to stop iOS rubber band */
+  overflow-x: clip; /* Use clip to avoid creating a scroll container that breaks sticky */
   overscroll-behavior: none;
   -webkit-overflow-scrolling: auto;
 }

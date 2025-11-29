@@ -35,7 +35,7 @@ export const Hero = () => {
     return new Set(nearby.slice(0, 6));
   };
 
-  const container:Variants = {
+  const container: Variants = {
     hidden: {},
     visible: {
       transition: {
@@ -44,9 +44,9 @@ export const Hero = () => {
     },
   };
 
-  const item:Variants = {
+  const item: Variants = {
     hidden: { opacity: 0, y: 60 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" , delay: 0.5 } },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut", delay: 0.5 } },
   };
 
   return (
@@ -78,41 +78,49 @@ export const Hero = () => {
 
       {/* Foreground Content */}
       <MaxWidthWrapper>
-      <motion.div
-      className="absolute top-[8.5rem] left-20 right-0 z-20 h-full pointer-events-none"
-      variants={container}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.8 }}
-      transition={{ delay: 0.8 }}
-    >
-      <motion.p
-        className="text-white text-lg tracking-tighter font-normal whitespace-nowrap relative -bottom-12 -right-[.875rem]"
-        variants={item}
-      >
-        NEPAL
-      </motion.p>
+        <motion.div
+          className="absolute top-[8.5rem] left-20 right-0 z-20 h-full pointer-events-none"
+          variants={container}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.8 }}
+          transition={{ delay: 0.8 }}
+        >
+          <motion.div
+            className="absolute w-[20.5rem] h-[27.5rem] top-[25%] right-[48%] transform translate-x-1/2 bg-slate-800 pointer-event-none -z-10"
+            variants={item}
+          >
 
-      <motion.p
-        className="text-white text-[8.6rem] tracking-tighter font-semibold uppercase whitespace-nowrap"
-        variants={item}
-      >
-        FullStack Engineer
-      </motion.p>
+          </motion.div>
 
-      <motion.p
-        className="text-white text-[2rem] tracking-wide font-normal whitespace-nowrap absolute right-20 top-[12.325rem]"
-        variants={item}
-      >
-        BUILDING BEAUTY WITH CODE
-      </motion.p>
-    </motion.div>
-        {/* <div className="absolute w-[20.5rem] h-[25.5rem] top-1/2 right-1/2 transform translate-x-1/2 -translate-y-1/5 bg-gray-300">
-        <Image src={'/rohan.png'} alt='rohan' width={1000} height={1000} className='w-full h-full object-cover' />
-        
-        </div> */}
-    {/* <PixelatedFace/> */}
+          <motion.p
+            className="text-white text-lg tracking-tighter font-normal whitespace-nowrap relative -bottom-12 -right-[.875rem]"
+            variants={item}
+          >
+            NEPAL
+          </motion.p>
+
+          <motion.p
+            className="text-white text-[8.6rem] tracking-tighter font-semibold uppercase whitespace-nowrap"
+            variants={item}
+          >
+            FullStack Engineer
+          </motion.p>
+
+          <motion.p
+            className="text-white text-[2rem] tracking-wide font-normal whitespace-nowrap absolute right-20 top-[12.325rem]"
+            variants={item}
+          >
+            BUILDING BEAUTY WITH CODE
+          </motion.p>
+
+
+        </motion.div>
+
+
+
+        {/* <PixelatedFace/> */}
       </MaxWidthWrapper>
-    </div>
+    </div >
   );
 };

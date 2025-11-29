@@ -11,17 +11,17 @@ type Dimensions = {
   width: number;
 };
 
-const anim = (variants:Variants) => {
+const anim = (variants: Variants) => {
 
   return {
 
-      variants,
+    variants,
 
-      initial: "initial",
+    initial: "initial",
 
-      animate: "enter",
+    animate: "enter",
 
-      exit: "exit"
+    exit: "exit"
 
   }
 
@@ -54,10 +54,10 @@ export const Curve: React.FC<CurveProps> = ({ children }) => {
     <div>
       <div
         style={{ opacity: dimension.width !== null ? 0 : 1 }}
-        className="bg-[#292626] fixed h-[calc(100vh+600px)] min-h-[100%] w-[100vw] top-[-300px] left-0  pointer-events-none z-[999] transition-opacity duration-100"
+        className="bg-[#292626] fixed h-[calc(100vh+600px)] w-screen top-0 left-0 pointer-events-none z-[999] transition-opacity duration-100"
       >
-        <div className="w-[100vw] h-[100vh] min-h-full ">
-          <Image width={1000} height={1000} className="w-full h-full" src={'/textures/bedge-grunge.png'} alt="" />
+        <div className="w-full h-full">
+          <Image width={1000} height={1000} className="w-full h-full object-cover" src={'/textures/bedge-grunge.png'} alt="" />
         </div>
       </div>
       {dimension.width > 0 && <SVG width={dimension.width} height={dimension.height} />}
