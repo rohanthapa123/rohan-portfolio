@@ -87,7 +87,7 @@ export const SpotlightGrid = () => {
     return (
         <div
             ref={containerRef}
-            className="absolute inset-0 z-50 pointer-events-none overflow-hidden"
+            className="absolute inset-0 z-50 pointer-events-none overflow-hidden "
         >
             <motion.div
                 className="absolute inset-0 grid grid-cols-58 gap-0"

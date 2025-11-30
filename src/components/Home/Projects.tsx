@@ -92,7 +92,7 @@ export const Projects = () => {
     <section className="relative text-white py-16 overflow-hidden">
       <MaxWidthWrapper>
         <div className="relative">
-          <p className="text-white text-lg mb-6">My Works</p>
+          <p className="text-white text-3xl md:text-lg mb-6">My Works</p>
 
           {/* 🔸 Project List */}
           <div className="tracking-tighter relative z-10">
@@ -101,12 +101,12 @@ export const Projects = () => {
                 key={project.id}
                 onMouseEnter={() => setHovered(project.id)}
                 onMouseLeave={() => setHovered(null)}
-                className={`py-8 px-8 flex items-center justify-between border-t border-white/20 
+                className={`w-full py-8 px-5 md:px-8 flex flex-col md:flex-row md:items-center justify-between border-t border-white/20 
                   ${index === projectsData.length - 1 ? "border-b" : ""
-                  } transition-all duration-300 hover:bg-white/5 cursor-pointer`}
+                  } transition-all duration-300 hover:bg-white/5 cursor-pointer `}
               >
-                <p className="text-5xl">{project.title}</p>
-                <div className="flex items-center gap-8 text-2xl">
+                <p className="text-2xl text-left md:text-5xl">{project.title}</p>
+                <div className="flex items-center justify-between gap-8 text-md md:text-2xl">
                   <WavyText text={project.role} />
                   <>
                     <ArrowRight className="size-8 -rotate-45 cursor-pointer hover:translate-x-1 hover:-translate-y-1 transition-transform duration-200" />

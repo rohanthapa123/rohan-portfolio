@@ -82,14 +82,14 @@ import { SpotlightGrid } from "../common/SpotlightGrid";
 export const About = () => {
     return (
         <section className="py-24 bg-black text-white relative group">
-            <SpotlightGrid />
+            <div className="hidden md:block"> <SpotlightGrid /></div>
             <MaxWidthWrapper>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
                     {/* Left Column */}
-                    <div className="space-y-8 sticky top-[11rem] pointer-event-none">
+                    <div className="space-y-8 md:sticky top-[11rem] pointer-event-none">
                         <div className="flex items-baseline gap-4">
 
-                            <h2 className="text-[8rem] leading-[0.8]  uppercase font-semibold tracking-tighter pointer-event-none">
+                            <h2 className="text-7xl md:text-[8rem] leading-[0.8]  uppercase font-semibold tracking-tighter pointer-event-none">
                                 About Me
                             </h2>
                         </div>

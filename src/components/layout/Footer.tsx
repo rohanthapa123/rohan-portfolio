@@ -73,7 +73,7 @@ export const Footer = () => {
         })}
       </div>
 
-      <div className="absolute inset-0 h-full w-full grid grid-cols-15 gap-0 z-50">
+      <div className="absolute inset-0 h-full w-full grid grid-cols-15 gap-0 z-50 md:hidden">
         {Array.from({ length: 500 }).map((_, idx) => (
           <div key={idx} className="w-[1.6025rem] h-[1.5625rem] border border-[rgba(100,100,100,0.12)]" />
         ))}

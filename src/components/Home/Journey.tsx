@@ -1,7 +1,8 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 type JourneyItem = {
     id: number;
@@ -15,92 +16,152 @@ const journeyData: JourneyItem[] = [
         id: 1,
         date: "Q3 2018",
         title: "Started Coding",
-        description: "Wrote my first line of code in C++. Fascinated by logic and problem solving.",
+        description:
+            "Wrote my first line of code in C++ and instantly got hooked. I spent hours experimenting with logic, understanding basic algorithms, and solving beginner-level problems.",
     },
     {
         id: 2,
         date: "Q4 2018",
         title: "Web Development",
-        description: "Dived into HTML, CSS, and JavaScript. Built my first static website.",
+        description:
+            "Dived into HTML, CSS, and vanilla JavaScript. Built my first static website and explored how the web actually works—from layouts to responsive design.",
     },
     {
         id: 3,
         date: "Q1 2019",
         title: "First Freelance Project",
-        description: "Built a landing page for a local business. Learned about client communication.",
+        description:
+            "Created a landing page for a local business. Learned to gather requirements, communicate with clients, and deliver a polished product on time.",
     },
     {
         id: 4,
         date: "Q3 2019",
         title: "React & Modern UI",
-        description: "Started learning React and modern frontend libraries. Focused on UX/UI.",
+        description:
+            "Started learning React, component architecture, and state management. Shifted focus toward creating smooth user experiences and visually appealing interfaces.",
     },
     {
         id: 5,
         date: "Q2 2020",
         title: "Full Stack Journey",
-        description: "Explored Node.js and databases. Built my first full-stack application.",
+        description:
+            "Ventured into backend development with Node.js, Express, and databases. Built my first full-stack application and learned how APIs, authentication, and data flow actually work.",
     },
     {
         id: 6,
         date: "Q4 2021",
         title: "Professional Career",
-        description: "Joined a tech company as a Junior Developer. Worked on enterprise software.",
+        description:
+            "Started working as a Junior Developer in a tech company. Collaborated on enterprise projects, followed best practices, and improved my debugging, architecture, and teamwork skills.",
     },
     {
         id: 7,
         date: "Present",
         title: "Senior Developer",
-        description: "Leading teams, architecting scalable solutions, and mentoring juniors.",
+        description:
+            "Currently leading teams, designing scalable systems, mentoring junior developers, and building high-quality digital experiences with modern technologies.",
     },
 ];
 
-export const Journey = () => {
-    const targetRef = useRef<HTMLDivElement | null>(null);
-    const { scrollYProgress } = useScroll({
-        target: targetRef,
-    });
 
-    const x = useTransform(scrollYProgress, [0, 1], ["1%", "-55%"]);
+gsap.registerPlugin(ScrollTrigger);
+
+export const Journey = () => {
+    const containerRef = useRef<HTMLDivElement>(null);
+    const sliderRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (window.innerWidth < 768) return; //👇 mobile skip GSAP
+
+        const ctx = gsap.context(() => {
+            const pin = containerRef.current;
+            const slider = sliderRef.current;
+
+            const totalWidth = slider!.scrollWidth;
+            const viewportWidth = window.innerWidth;
+            const scrollDistance = totalWidth - viewportWidth;
+
+            gsap.to(slider, {
+                x: -scrollDistance,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: pin,
+                    start: "top top",
+                    end: () => `+=${scrollDistance}`,
+                    scrub: 1,
+                    pin: true,
+                    anticipatePin: 1,
+                },
+            });
+        });
+
+        return () => ctx.revert();
+    }, []);
 
     return (
-        <section ref={targetRef} className="relative h-[300vh] bg-black text-white">
-            <div className="sticky top-12 flex h-screen items-center overflow-hidden">
+        <section ref={containerRef} className="relative bg-black text-white">
 
-                {/* Title */}
-                <div className="absolute top-12 left-12 z-10">
-                    <h2 className="text-[8rem] leading-[0.8]  uppercase font-semibold tracking-tighter">
-                        Journey
-                    </h2>
+            {/* Desktop Horizontal */}
+            <div className="hidden md:block relative">
+                <div className="h-[110vh]">
+                    <div className="sticky top-12 h-screen flex items-center overflow-hidden">
+
+                        {/* Title */}
+                        <h2 className="absolute top-12 left-12 text-7xl md:text-[8rem] tracking-tighter font-semibold">
+                            Journey
+                        </h2>
+
+                        {/* Horizontal slider */}
+                        <div ref={sliderRef} className="flex gap-24 px-24 items-center will-change-transform">
+                            {journeyData.map((item) => (
+                                <div key={item.id} className="min-w-[400px] relative flex flex-col items-start">
+
+                                    <div className="absolute top-[3.5rem] left-[-6px] w-3 h-3 bg-blue-500 rounded-full" />
+
+                                    <div className="mb-8 pl-4 border-l border-white/20 h-12 flex items-end">
+                                        <span className="text-xl font-bold bg-white/10 px-4 py-1 rounded-full">
+                                            {item.date}
+                                        </span>
+                                    </div>
+
+                                    <div className="w-[120%] h-[1px] bg-white/20 absolute top-[3.7rem]" />
+
+                                    <div className="mt-8 pl-4 border-l border-white/20 pt-4">
+                                        <h3 className="text-3xl font-bold mb-2">{item.title}</h3>
+                                        <p className="text-white/60 text-lg leading-relaxed">
+                                            {item.description}
+                                        </p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+
+                    </div>
                 </div>
+            </div>
 
-                <motion.div style={{ x }} className="flex gap-24 px-24 items-center">
-                    {journeyData.map((item, index) => (
-                        <div key={item.id} className="relative flex flex-col items-start min-w-[400px]">
-                            {/* Timeline Point */}
-                            <div className="absolute top-[3.5rem] left-[-6px] w-3 h-3 bg-blue-500 rounded-full z-10" />
+            {/* Mobile Vertical Timeline */}
+            <div className="md:hidden px-6 py-20">
+                <h2 className="text-6xl font-semibold tracking-tight mb-16">Journey</h2>
 
-                            {/* Top Content (Date) */}
-                            <div className="mb-8 pl-4 border-l border-white/20 h-12 flex items-end">
-                                <span className="text-xl font-bold bg-white/10 px-4 py-1 rounded-full">
-                                    {item.date}
-                                </span>
-                            </div>
+                <div className="flex flex-col relative border-l border-white/20 pl-6 space-y-16">
 
-                            {/* Horizontal Line Segment */}
-                            <div className="w-[120%] h-[1px] bg-white/20 absolute top-[3.7rem] left-0 -z-0" />
+                    {journeyData.map(item => (
+                        <div key={item.id} className="relative">
+                            <div className="absolute left-[-10px] top-[6px] w-3 h-3 bg-blue-500 rounded-full"></div>
 
-                            {/* Bottom Content (Title & Desc) */}
-                            <div className="mt-8 pl-4 border-l border-white/20 pt-4">
-                                <h3 className="text-3xl font-bold mb-2">{item.title}</h3>
-                                <p className="text-white/60 text-lg leading-relaxed">
-                                    {item.description}
-                                </p>
-                            </div>
+                            <p className="text-lg font-bold bg-white/10 inline-block px-3 py-1 rounded-full">
+                                {item.date}
+                            </p>
+
+                            <h3 className="text-3xl font-semibold mt-4">{item.title}</h3>
+                            <p className="text-white/60 mt-2 leading-relaxed">{item.description}</p>
                         </div>
                     ))}
-                </motion.div>
+
+                </div>
             </div>
+
         </section>
     );
 };

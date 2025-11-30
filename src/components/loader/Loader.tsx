@@ -42,10 +42,10 @@ export const Loader = ({ progress }: LoaderProps) => {
   return (
     <div className="w-[100vw] h-[100vh] flex items-center justify-center bg-[#292626]">
       <div className="w-[100vw] h-[100vh] ">
-        <Image width={1000} height={1000} className="w-full h-full" src={'/textures/bedge-grunge.png'} alt="" />
+        <Image width={1000} height={1000} className="w-full h-full object-cover" src={'/textures/bedge-grunge.png'} alt="" />
       </div>
       {/* Progress digits */}
-      <div className="flex h-[7rem] md:h-[12.5rem] pe-0 md:pe-5 absolute bottom-20 md:bottom-10 right-4 md:right-20">
+      <div className="flex max-md:w-35 h-[7rem] md:h-[12.5rem] pe-0 md:pe-5 absolute bottom-20 md:bottom-10 right-4 md:right-20">
         {digits.map((digit, idx) => {
           const prevDigit = prevDigitsRef.current[idx];
           prevDigitsRef.current[idx] = digit;
@@ -54,7 +54,7 @@ export const Loader = ({ progress }: LoaderProps) => {
             <div
               key={idx}
               style={containerStyle}
-              className="relative flex items-center justify-center w-[3.5rem] md:w-[7rem]"
+              className="relative flex items-center justify-center w-[0.5rem] md:w-[7rem]"
             >
               <AnimatePresence mode="popLayout">
                 <motion.span
@@ -63,7 +63,7 @@ export const Loader = ({ progress }: LoaderProps) => {
                   animate={{ y: 0 }}
                   exit={{ y: "-100%" }}
                   transition={{ duration: 0.5, ease: [0.85, 0, 0.15, 1] }} // circInOut
-                  className="text-black text-[6rem] md:text-[12.5rem] font-extrabold tracking-tight absolute"
+                  className="text-black text-[6rem] md:text-[12.5rem] font-extrabold  tracking-tighter md:tracking-tight absolute"
                 >
                   {digit}
                 </motion.span>

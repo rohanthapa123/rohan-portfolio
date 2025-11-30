@@ -56,7 +56,7 @@ export const Hero = () => {
         <Image src={"/main.png"} width={500} height={500} alt='rohan thapa' className='w-full h-full object-contain brightness-50' />
       </div> */}
       {/* Triangle Grid */}
-      <div className="absolute inset-0 grid grid-cols-58 gap-0 z-0">
+      <div className="absolute inset-0 hidden md:grid grid-cols-58 gap-0 z-0">
         {triangles.map((_, idx) => {
           const isHighlighted = highlighted.has(idx);
           return (
@@ -76,10 +76,16 @@ export const Hero = () => {
         })}
       </div>
 
+      <div className="absolute inset-0 h-full w-full grid grid-cols-16 gap-0  md:hidden">
+        {Array.from({ length: 550 }).map((_, idx) => (
+          <div key={idx} className="w-[1.6025rem] h-[1.5625rem] border border-[rgba(100,100,100,0.12)]" />
+        ))}
+      </div>
+
       {/* Foreground Content */}
       <MaxWidthWrapper>
         <motion.div
-          className="absolute top-[8.5rem] left-20 right-0 z-20 h-full pointer-events-none"
+          className="absolute top-20 md:top-[8.5rem] left-5 md:left-20 right-0 z-20 h-full pointer-events-none"
           variants={container}
           initial="hidden"
           whileInView="visible"
@@ -87,28 +93,28 @@ export const Hero = () => {
           transition={{ delay: 0.8 }}
         >
           <motion.div
-            className="absolute w-[20.5rem] h-[27.5rem] top-[20%] right-[48%] transform translate-x-1/2 bg-slate-800 pointer-event-none -z-10"
+            className="absolute w-[17rem] md:w-[20.5rem] h-[22rem] md:h-[27.5rem] top-[35%] md:top-[20%] right-[55%] md:right-[48%] transform translate-x-1/2 bg-slate-800 pointer-event-none -z-10"
             variants={item}
           >
             <Image src={"/images/rohan.jpg"} width={500} height={500} alt='rohan thapa' className='w-full h-full object-cover brightness-80' />
           </motion.div>
 
           <motion.p
-            className="text-white text-lg tracking-tighter font-normal whitespace-nowrap relative -bottom-12 -right-[.875rem]"
+            className="text-white text-lg tracking-tighter font-normal whitespace-nowrap relative -bottom-12  md:-right-[.875rem]"
             variants={item}
           >
             NEPAL
           </motion.p>
 
           <motion.p
-            className="text-white text-[8.6rem] tracking-tighter font-semibold uppercase whitespace-nowrap"
+            className="text-white relative top-12 md:top-0 max-md:text-7xl md:text-[8.6rem] tracking-tighter font-semibold uppercase whitespace-nowrap"
             variants={item}
           >
-            FullStack Engineer
+            FullStack <br className='md:hidden' />Engineer
           </motion.p>
 
           <motion.p
-            className="text-white text-[2rem] tracking-wide font-normal whitespace-nowrap absolute right-20 top-[12.325rem]"
+            className="text-white text-lg md:text-[2rem] tracking-wide font-normal whitespace-nowrap absolute right-5 md:right-20 top-[13.5rem] md:top-[12.325rem]"
             variants={item}
           >
             BUILDING BEAUTY WITH CODE

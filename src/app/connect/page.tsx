@@ -64,7 +64,9 @@ export default function ConnectPage() {
 
   return (
     <div className="bg-black text-white relative pt-[10rem] pb-12" data-scroll-section>
-      <SpotlightGrid />
+      <div className="hidden md:block">
+        <SpotlightGrid />
+      </div>
 
       <MaxWidthWrapper>
         <motion.div
@@ -75,7 +77,7 @@ export default function ConnectPage() {
         >
           {/* Left Column: Contact Info */}
           <motion.div className="space-y-8 w-fit" variants={item}>
-            <h1 className="text-[6rem] leading-[0.8] font-bold uppercase tracking-tighter">
+            <h1 className="text-7xl md:text-[6rem] leading-[0.8] font-bold uppercase tracking-tighter">
               Let&apos;s <br /> Connect
             </h1>
             <p className="text-xl text-white/60 max-w-md">
@@ -99,7 +101,7 @@ export default function ConnectPage() {
           </motion.div>
 
           {/* Right Column: Form */}
-          <motion.div className="backdrop-blur-sm p-8 rounded-2xl" variants={item}>
+          <motion.div className="backdrop-blur-sm md:p-8 rounded-2xl" variants={item}>
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
               <div className="space-y-2">
                 <label htmlFor="name" className="text-sm font-medium text-white/80">Name</label>
