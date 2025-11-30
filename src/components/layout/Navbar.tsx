@@ -56,7 +56,7 @@ export const Navbar = () => {
 
   return (
     <div>
-      <div data-scroll-prevent className={`fixed top-0 w-full h-[12vh] z-[999] transition-all duration-500
+      <div data-scroll-prevent className={`fixed top-0 w-full h-[12vh] z-[990] transition-all duration-500
         ${scrolled && !menuOpen ? "backdrop-blur-lg bg-black/40 shadow-md" : "bg-transparent"}
       `}>
         <div className=" h-full flex items-center">

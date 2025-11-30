@@ -40,7 +40,7 @@ export const Loader = ({ progress }: LoaderProps) => {
   };
 
   return (
-    <div className="w-[100vw] h-[100vh] flex items-center justify-center bg-[#292626]">
+    <div className="w-[100vw] h-[100vh] flex items-center justify-center bg-[#292626] z-[999]">
       <div className="w-[100vw] h-[100vh] ">
         <Image width={1000} height={1000} className="w-full h-full object-cover" src={'/textures/bedge-grunge.png'} alt="" />
       </div>

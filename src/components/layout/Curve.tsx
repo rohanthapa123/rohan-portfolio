@@ -7,8 +7,8 @@ type CurveProps = {
 };
 
 type Dimensions = {
-  height: number;
-  width: number;
+  height: number | null;
+  width: number | null;
 };
 
 const anim = (variants: Variants) => {
@@ -30,8 +30,8 @@ const anim = (variants: Variants) => {
 export const Curve: React.FC<CurveProps> = ({ children }) => {
 
   const [dimension, setDimension] = useState<Dimensions>({
-    height: 0,
-    width: 0,
+    height: null,
+    width: null,
   });
 
   useEffect(() => {
@@ -53,14 +53,14 @@ export const Curve: React.FC<CurveProps> = ({ children }) => {
   return (
     <div>
       <div
-        style={{ opacity: dimension.width !== null ? 0 : 1 }}
+        style={{ opacity: dimension.width == null ? 1 : 0 }}
         className="bg-[#292626] fixed h-[calc(100vh+600px)] w-screen top-0 left-0 pointer-events-none z-[999] transition-opacity duration-100"
       >
         <div className="w-full h-full">
           <Image width={1000} height={1000} className="w-full h-full object-cover" src={'/textures/bedge-grunge.png'} alt="" />
         </div>
       </div>
-      {dimension.width > 0 && <SVG width={dimension.width} height={dimension.height} />}
+      {dimension.width != null && dimension.height != null && <SVG width={dimension.width} height={dimension.height} />}
       {children}
     </div>
   );
@@ -157,6 +157,7 @@ const SVG: React.FC<SVGProps> = ({ width, height }) => {
             width="1000"
             height="1000"
             preserveAspectRatio="xMidYMid slice"
+            className='object-cover'
           />
         </pattern>
       </defs>
