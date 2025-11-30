@@ -51,9 +51,9 @@ export const Footer = () => {
   const email = "hello@rohanthapa.com.np";
 
   return (
-    <div className="relative w-full h-[50vh] bg-black overflow-clip">
+    <div className="relative w-full min-h-[50vh] bg-black overflow-clip">
       {/* Animated grid background */}
-      <div className="absolute inset-0 grid grid-cols-58 gap-0 z-50">
+      <div className="absolute inset-0 hidden md:grid grid-cols-58 gap-0 z-50">
         {triangles.map((_, idx) => {
           const isHighlighted = highlighted.has(idx);
           return (
@@ -73,10 +73,16 @@ export const Footer = () => {
         })}
       </div>
 
+      <div className="absolute inset-0 h-full w-full grid grid-cols-15 gap-0 z-50">
+        {Array.from({ length: 500 }).map((_, idx) => (
+          <div key={idx} className="w-[1.6025rem] h-[1.5625rem] border border-[rgba(100,100,100,0.12)]" />
+        ))}
+      </div>
+
       {/* Footer content */}
       <MaxWidthWrapper>
         <div className="text-white ">
-          <div className="pt-6 pb-[5rem] flex items-start justify-between ">
+          <div className="pt-6 pb-[5rem] flex flex-col md:flex-row items-start justify-between gap-10 md:gap-0">
             {/* Left navigation column */}
             <div className="flex flex-col gap-1 w-fit relative z-50">
               {navLinks.map((link) => (
@@ -89,7 +95,7 @@ export const Footer = () => {
             </div>
 
             {/* Right column */}
-            <div className="flex items-start gap-5 w-fit">
+            <div className="flex flex-col md:flex-row items-start gap-10 md:gap-5 w-full md:w-fit">
               {/* Social + email */}
               <div className="flex flex-col gap-1 w-fit relative z-50">
                 {socialLinks.map((social) => (
@@ -119,8 +125,8 @@ export const Footer = () => {
           </div>
 
           {/* Bottom footer bar */}
-          <div className="flex items-center justify-between pointer-events-none">
-            <p className="w-fit">LOGO HERE</p>
+          <div className="flex flex-col md:flex-row items-center justify-between pointer-events-none gap-4 md:gap-0 pb-8 md:pb-0">
+            <p className="w-fit hidden md:block">LOGO HERE</p>
             <p className="flex items-center w-fit pointer-events-auto relative z-50">
               <WavyText text="Rohan Thapa" />
               &nbsp;&copy; {new Date().getFullYear()}
