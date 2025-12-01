@@ -51,7 +51,7 @@ export const Footer = () => {
   const email = "hello@rohanthapa.com.np";
 
   return (
-    <div className="relative w-full min-h-[50vh] bg-black overflow-clip">
+    <div className="relative w-full min-h-[50vh] bg-black overflow-clip" data-scroll-section>
       {/* Animated grid background */}
       <div className="absolute inset-0 hidden md:grid grid-cols-58 gap-0 z-50">
         {triangles.map((_, idx) => {
@@ -87,7 +87,20 @@ export const Footer = () => {
             <div className="flex flex-col gap-1 w-fit relative z-50">
               {navLinks.map((link) => (
                 <div key={link.label} className="w-fit ">
-                  <Link href={link.href}>
+                  <Link
+                    href={link.href}
+                    onClick={(e) => {
+                      if (link.label === "Back to Top") {
+                        e.preventDefault();
+                        const locoScroll = window.locoScroll;
+                        if (locoScroll) {
+                          locoScroll.scrollTo(0);
+                        } else {
+                          window.scrollTo({ top: 0, behavior: "smooth" });
+                        }
+                      }
+                    }}
+                  >
                     <WavyText text={link.label} />
                   </Link>
                 </div>

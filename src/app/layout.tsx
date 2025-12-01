@@ -18,7 +18,7 @@ const fira_code = Fira_Code({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://yourdomain.com"), // replace with your real domain
+  metadataBase: new URL("https://rohanthapa.com.np"), // replace with your real domain
   title: {
     default: "Rohan Thapa | Full-Stack Developer & Tech Enthusiast",
     template: "%s | Rohan Thapa",
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     siteName: "Rohan Thapa Portfolio",
     images: [
       {
-        url: "https://rohanthapa.com.np/og-image.png", // add an OG image for sharing
+        url: "https://cdn.rohanthapa.com.np/1764439086608%20(1).jpg", // add an OG image for sharing
         width: 1200,
         height: 630,
         alt: "Rohan Thapa Portfolio Preview",
@@ -69,7 +69,7 @@ export const metadata: Metadata = {
     title: "Rohan Thapa | Full-Stack Developer & Tech Enthusiast",
     description:
       "Explore the portfolio of Rohan Thapa – Full-Stack Developer skilled in React, Next.js, Node.js, and more.",
-    images: ["https://rohanthapa.com.np/og-image.png"],
+    images: ["https://cdn.rohanthapa.com.np/1764439086608%20(1).jpg"],
   },
   alternates: {
     canonical: "https://rohanthapa.com.np",
@@ -105,6 +105,21 @@ export default function RootLayout({
           crossOrigin=""
         />
 
+        <link
+          rel="preload"
+          href="https://cdn.rohanthapa.com.np/1764439086608%20(1).jpg"
+          as="image"
+          type="image/jpeg"
+          crossOrigin=""
+        />
+
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link rel="manifest" href="/site.webmanifest" />
+
+
+
       </head>
       <body
         className={`${roboto.variable} ${fira_code.variable} antialiased`}
@@ -112,10 +127,10 @@ export default function RootLayout({
         <ReactQueryProvider>
           <PageTransition>
             <Navbar />
-            {/* <SmoothScrollProvider> */}
-            {children}
-            {/* </SmoothScrollProvider> */}
-            <Footer />
+            <SmoothScrollProvider>
+              {children}
+              <Footer />
+            </SmoothScrollProvider>
           </PageTransition>
         </ReactQueryProvider>
       </body>

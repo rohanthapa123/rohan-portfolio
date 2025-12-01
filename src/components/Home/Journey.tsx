@@ -71,40 +71,71 @@ export const Journey = () => {
     const sliderRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        if (window.innerWidth < 768) return; //👇 mobile skip GSAP
+        if (typeof window === "undefined" || window.innerWidth < 768) return;
 
-        const ctx = gsap.context(() => {
-            const pin = containerRef.current;
+        let tl: gsap.core.Timeline | null = null;
+
+        const initScrollTrigger = () => {
+            const container = containerRef.current;
             const slider = sliderRef.current;
 
-            const totalWidth = slider!.scrollWidth;
+            if (!container || !slider) return;
+
+            const totalWidth = slider.scrollWidth;
             const viewportWidth = window.innerWidth;
             const scrollDistance = totalWidth - viewportWidth;
 
-            gsap.to(slider, {
-                x: -scrollDistance,
-                ease: "none",
+            // Kill existing timeline if any
+            if (tl) tl.kill();
+
+            tl = gsap.timeline({
                 scrollTrigger: {
-                    trigger: pin,
-                    start: "top top",
+                    trigger: container,
+                    // scroller and pinType are handled by global defaults in SmoothScrollProvider
+                    start: "top-=100 top",
                     end: () => `+=${scrollDistance}`,
                     scrub: 1,
                     pin: true,
-                    anticipatePin: 1,
-                },
-            });
-        });
+                    pinType: "transform",
 
-        return () => ctx.revert();
+                    // anticipatePin: 1,
+                    invalidateOnRefresh: true,
+                    // markers: true,
+                }
+            });
+
+            tl.to(slider, { x: -scrollDistance, ease: "none" });
+
+            ScrollTrigger.refresh();
+        };
+
+        // Wait for Locomotive Scroll to be ready
+        const checkInterval: NodeJS.Timeout = setInterval(() => {
+            if (window.locoScroll) {
+                clearInterval(checkInterval);
+                setTimeout(initScrollTrigger, 100);
+            }
+        }, 100);
+
+        return () => {
+            clearInterval(checkInterval);
+            if (tl) tl.kill();
+            ScrollTrigger.getAll().forEach(t => {
+                if (t.trigger === containerRef.current) t.kill();
+            });
+        };
     }, []);
 
+
+
+
     return (
-        <section ref={containerRef} className="relative bg-black text-white">
+        <section className="relative bg-black text-white" data-scroll-section>
 
             {/* Desktop Horizontal */}
-            <div className="hidden md:block relative">
-                <div className="h-[110vh]">
-                    <div className="sticky top-12 h-screen flex items-center overflow-hidden">
+            <div className="hidden md:block">
+                <div ref={containerRef} className="relative h-screen bg-black">
+                    <div className="h-screen flex items-center overflow-hidden">
 
                         {/* Title */}
                         <h2 className="absolute top-12 left-12 text-7xl md:text-[8rem] tracking-tighter font-semibold">

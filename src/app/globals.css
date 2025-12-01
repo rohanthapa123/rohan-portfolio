@@ -94,7 +94,7 @@ body {
 html {
   font-size: 1.05vw;
   scrollbar-width: none;
-  overflow: auto;
+  overflow: hidden;
   -webkit-overflow-scrolling: auto;
   overscroll-behavior-y: none;
   /* scroll-behavior: smooth; */
@@ -102,19 +102,27 @@ html {
   -moz-osx-font-smoothing: grayscale; */
 }
 
-html,
-body {
+html {
   background-color: black;
-  overflow-x: clip;
-  /* Use clip to avoid creating a scroll container that breaks sticky */
-  /* overscroll-behavior: none; */
-  -webkit-overflow-scrolling: auto;
-  /* scroll-behavior: smooth; */
-  /* overflow: hidden; */
+  overflow-x: hidden;
+  overflow-y: scroll;
+  /* Ensure scrollbar is always present or allowed */
 }
 
+body {
+  background-color: black;
+  overflow-x: hidden;
+}
+
+/* When Locomotive Scroll is active (desktop), it handles overflow. 
+   But for mobile (where it's disabled), we need native scroll. */
 [data-scroll-container] {
   min-height: 100vh;
+}
+
+
+[data-scroll-container] {
+  min-height: 100%;
   will-change: transform;
   backface-visibility: hidden;
   -webkit-font-smoothing: antialiased;

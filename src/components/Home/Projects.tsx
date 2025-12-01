@@ -89,7 +89,7 @@ export const Projects = () => {
   }, [x, y]);
 
   return (
-    <section className="relative text-white py-16 overflow-hidden">
+    <section className="relative text-white pt-48 pb-16 overflow-hidden" data-scroll-section>
       <MaxWidthWrapper>
         <div className="relative">
           <p className="text-white text-3xl md:text-lg mb-6">My Works</p>

@@ -1,13 +1,13 @@
 "use client";
-import React, { useEffect, useState } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
-import { MaxWidthWrapper } from '../common/MaxWidthWrapper'
-import { Typography } from '../common/Typography'
-import { Button } from '../ui/button'
-import { ArrowRight, ChevronRight } from 'lucide-react'
-import Link from 'next/link'
-import { WavyText } from '../common/WavyText'
-import { div } from 'framer-motion/client';
+import { AnimatePresence, motion } from 'framer-motion';
+import { ArrowRight } from 'lucide-react';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import { MaxWidthWrapper } from '../common/MaxWidthWrapper';
+import { Typography } from '../common/Typography';
+import { WavyText } from '../common/WavyText';
+import LocomotiveScroll, { OnScrollEvent } from "locomotive-scroll";
+
 
 const items = [
   {
@@ -24,24 +24,40 @@ const items = [
   }
 ]
 
+
+
+
 export const Navbar = () => {
 
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false)
 
   useEffect(() => {
-    const handleScroll = () => {
-      // change state when scrolled a bit
-      if (window.scrollY > 60) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
+    let scrollInstance: LocomotiveScroll | null = null;
+
+    const checkLocoScroll = setInterval(() => {
+      scrollInstance = window.locoScroll ?? null;
+
+      if (scrollInstance) {
+        clearInterval(checkLocoScroll);
+
+        scrollInstance.on("scroll", (event: OnScrollEvent) => {
+          const y = event.scroll.y;
+          setScrolled(y > 60);
+        });
+      }
+    }, 100);
+
+    return () => {
+      clearInterval(checkLocoScroll);
+      if (scrollInstance) {
+        // v4 doesn't have .off(); destroying removes all listeners
+        // scrollInstance.destroy();
       }
     };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+
 
   useEffect(() => {
     if (menuOpen) {
@@ -94,7 +110,7 @@ export const Navbar = () => {
               </div>
 
               {/* Mobile Menu Toggle */}
-              <div className="md:hidden relative z-[998]">
+              <div className="md:hidden relative z-[999]">
                 <div
                   className="rounded-full bg-white w-12 h-12 flex items-center justify-center cursor-pointer"
                   onClick={() => setMenuOpen(!menuOpen)}
@@ -129,7 +145,7 @@ export const Navbar = () => {
             animate={{ clipPath: "circle(150% at calc(100% - 3rem) 3rem)" }}
             exit={{ clipPath: "circle(0% at calc(100% - 3rem) 3rem)" }}
             transition={{ duration: 0.7, ease: [0.76, 0, 0.24, 1] }}
-            className="fixed inset-0 bg-white/70 backdrop-blur-md z-[995] flex flex-col justify-center items-center"
+            className="fixed inset-0 bg-white/70 backdrop-blur-md z-[985] flex flex-col justify-center items-center"
           >
             <div className="flex flex-col gap-8 items-center">
               {items.map((item, idx) => (
