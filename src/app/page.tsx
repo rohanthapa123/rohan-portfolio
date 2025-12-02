@@ -9,7 +9,7 @@ export default function Home() {
 
       <Hero />
       <About pt="124px" />
-      <Projects />
+      <Projects limit={4} showViewAll={true} />
       <Journey />
     </div>
   );
