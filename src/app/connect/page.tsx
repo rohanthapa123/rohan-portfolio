@@ -8,6 +8,9 @@ import { MaxWidthWrapper } from "@/components/common/MaxWidthWrapper";
 import { SpotlightGrid } from "@/components/common/SpotlightGrid";
 import { Loader2 } from "lucide-react";
 import { motion, Variants } from "framer-motion";
+import axios from "axios";
+import { toast } from "sonner";
+import Link from "next/link";
 
 const contactSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -44,17 +47,20 @@ export default function ConnectPage() {
 
   const mutation = useMutation({
     mutationFn: async (data: ContactFormData) => {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-      console.log("Form submitted:", data);
-      return { success: true };
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/website-contact`, data);
+      return response.data;
     },
     onSuccess: () => {
       reset();
-      alert("Message sent successfully!");
+      toast.success("Message sent successfully!", {
+        description: "Thank you for reaching out. I'll get back to you soon!",
+      });
     },
-    onError: () => {
-      alert("Failed to send message. Please try again.");
+    onError: (error) => {
+      console.error("Error sending message:", error);
+      toast.error("Failed to send message", {
+        description: "Please try again later or contact me directly via email.",
+      });
     },
   });
 
@@ -87,14 +93,14 @@ export default function ConnectPage() {
             <div className="space-y-4 pt-8">
               <div>
                 <h3 className="text-lg font-semibold text-white/80">Email</h3>
-                <p className="text-white/60">hello@rohanthapa.com.np</p>
+                <Link href="mailto:hello@rohanthapa.com.np" className="text-white/60 hover:text-white transition-colors">hello@rohanthapa.com.np</Link>
               </div>
               <div>
                 <h3 className="text-lg font-semibold text-white/80">Socials</h3>
                 <div className="flex gap-4 text-white/60">
-                  <a href="#" className="hover:text-white transition-colors">LinkedIn</a>
-                  <a href="#" className="hover:text-white transition-colors">Twitter</a>
-                  <a href="#" className="hover:text-white transition-colors">GitHub</a>
+                  <a href="https://linkedin.com/in/rohanthapa" className="hover:text-white transition-colors">LinkedIn</a>
+                  <a href="https://facebook.com/rohanthapa69" className="hover:text-white transition-colors">Facebook</a>
+                  <a href="https://github.com/rohanthapa123" className="hover:text-white transition-colors">GitHub</a>
                 </div>
               </div>
             </div>

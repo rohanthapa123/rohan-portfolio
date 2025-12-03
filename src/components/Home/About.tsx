@@ -29,9 +29,7 @@ export const About = ({ pt }: { pt: string }) => {
                             </h2>
                         </div>
                         <p className="text-xl text-white/60 leading-relaxed max-w-md font-sans pl-6 pointer-event-none">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                            enim ad minim veniam.
+                           Curious developer who loves building creative web solutions. I enjoy experimenting with new tools, writing clean code, and turning ideas into interactive experiences that users enjoy.
                         </p>
                     </div>
 

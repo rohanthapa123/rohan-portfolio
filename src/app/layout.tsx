@@ -6,6 +6,7 @@ import { Fira_Code, Roboto } from "next/font/google";
 import "./globals.css";
 import { ReactQueryProvider } from "@/providers/ReactQueryProvider";
 import { SmoothScrollProvider } from "@/providers/SmoothScrollProvider";
+import { Toaster } from "@/components/ui/sonner";
 
 const roboto = Roboto({
   variable: "--font-roboto",
@@ -133,6 +134,7 @@ export default function RootLayout({
             </SmoothScrollProvider>
           </PageTransition>
         </ReactQueryProvider>
+        <Toaster />
       </body>
     </html>
   );

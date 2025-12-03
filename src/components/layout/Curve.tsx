@@ -57,7 +57,7 @@ export const Curve: React.FC<CurveProps> = ({ children }) => {
         className="bg-[#292626] fixed h-[calc(100vh+600px)] w-screen top-0 left-0 pointer-events-none z-[999] transition-opacity duration-100"
       >
         <div className="w-full h-full">
-          <Image width={1000} height={1000} className="w-full h-full object-cover" src={'/textures/bedge-grunge.png'} alt="" />
+          <Image width={1000} height={1000} className="w-full h-full object-contain" src={'/textures/bedge-grunge.png'} alt="" />
         </div>
       </div>
       {dimension.width != null && dimension.height != null && <SVG width={dimension.width} height={dimension.height} />}
