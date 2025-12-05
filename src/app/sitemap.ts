@@ -23,7 +23,7 @@ export default function sitemap() {
     {
       url: `${baseUrl}/projects`,
       lastModified: new Date(),
-      changeFrequency: "monthly`,
+      changeFrequency: "monthly",
       priority: 0.7,
     },
   ];
