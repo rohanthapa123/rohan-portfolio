@@ -95,20 +95,21 @@ export const Navbar = () => {
                 }
               </div>
 
-              <div className="relative hidden md:inline-flex rounded-full p-[.125rem] cursor-pointer group overflow-clip">
-                {/* Rotating gradient border */}
-                <div className="absolute inset-0 h-[200%] rounded-full bg-[conic-gradient(at_top_left,_#3b82f6,_#9333ea,_#f43f5e,_#3b82f6)] animate-spin-slow group-hover:hidden blur-[1.5rem]"></div>
+              <Link href={"/connect"}>
+                <div className="relative hidden md:inline-flex rounded-full p-[.125rem] cursor-pointer group overflow-clip">
+                  {/* Rotating gradient border */}
+                  <div className="absolute inset-0 h-[200%] rounded-full bg-[conic-gradient(at_top_left,_#3b82f6,_#9333ea,_#f43f5e,_#3b82f6)] animate-spin-slow group-hover:hidden blur-[1.5rem]"></div>
 
-                {/* Inner button with SVG-like shine effect */}
-                <div className="relative rounded-full bg-black px-6 py-2 flex items-center gap-2 text-white overflow-hidden">
-                  <span className="relative z-10">CONTACT ME</span>
-                  <ArrowRight className="size-6 -rotate-45 group-hover:rotate-0 transition-all duration-500 relative z-10" strokeWidth=".0875rem" />
+                  {/* Inner button with SVG-like shine effect */}
+                  <div className="relative rounded-full bg-black px-6 py-2 flex items-center gap-2 text-white overflow-hidden">
+                    <span className="relative z-10">CONTACT ME</span>
+                    <ArrowRight className="size-6 -rotate-45 group-hover:rotate-0 transition-all duration-500 relative z-10" strokeWidth=".0875rem" />
 
-                  {/* Shine gradient rising from below */}
-                  <div className="absolute inset-0 translate-y-full group-hover:translate-y-0 transition-transform duration-700 ease-out bg-[linear-gradient(to_top,_rgba(59,130,246,0.4),rgba(147,51,234,0.4),rgba(244,63,94,0.4))]" />
+                    {/* Shine gradient rising from below */}
+                    <div className="absolute inset-0 translate-y-full group-hover:translate-y-0 transition-transform duration-700 ease-out bg-[linear-gradient(to_top,_rgba(59,130,246,0.4),rgba(147,51,234,0.4),rgba(244,63,94,0.4))]" />
+                  </div>
                 </div>
-              </div>
-
+              </Link>
               {/* Mobile Menu Toggle */}
               <div className="md:hidden relative z-[999]">
                 <div
