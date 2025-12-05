@@ -122,6 +122,57 @@ export default function RootLayout({
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
         <link rel="manifest" href="/site.webmanifest" />
 
+        <head>
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org/",
+                "@type": "Person",
+                "name": "Rohan Thapa",
+                "url": "https://rohanthapa.com.np",
+                "image": "https://cdn.rohanthapa.com.np/portfolio-og.jpg",
+                "jobTitle": "Full Stack Developer",
+                "address": {
+                  "@type": "PostalAddress",
+                  "addressLocality": "Kathmandu",
+                  "addressCountry": "Nepal"
+                },
+                "sameAs": [
+                  "https://www.linkedin.com/in/rohanthapa-dev",
+                  "https://www.instagram.com/rohanthapa.dev",
+                  "https://www.facebook.com/rohanthapa"
+                ]
+              }),
+            }}
+          />
+        </head>
+        <head>
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org/",
+                "@type": "Person",
+                "name": "Rohan Thapa",
+                "url": "https://rohanthapa.com.np",
+                "image": "https://cdn.rohanthapa.com.np/portfolio-og.jpg",
+                "jobTitle": "Full Stack Developer",
+                "address": {
+                  "@type": "PostalAddress",
+                  "addressLocality": "Kathmandu",
+                  "addressCountry": "Nepal"
+                },
+                "sameAs": [
+                  "https://www.linkedin.com/in/rohanthapa",
+                  "https://www.instagram.com/rohanthapa.2",
+                  "https://www.facebook.com/rohanthapa69"
+                ]
+              }),
+            }}
+          />
+        </head>
+
 
 
       </head>
