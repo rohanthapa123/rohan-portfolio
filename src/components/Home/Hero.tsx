@@ -96,7 +96,7 @@ export const Hero = () => {
             className="absolute w-[17rem] md:w-[20.5rem] h-[22rem] md:h-[27.5rem] top-[35%] md:top-[20%] right-[55%] md:right-[48%] transform translate-x-1/2 bg-slate-800 pointer-event-none -z-10"
             variants={item}
           >
-            <Image src={"https://cdn.rohanthapa.com.np/1764439086608%20(1).jpg"} width={500} height={500} alt='rohan thapa' className='w-full h-full object-cover brightness-80' />
+            <Image src={"https://cdn.rohanthapa.com.np/portfolio-og.jpg"} width={500} height={500} alt='rohan thapa' className='w-full h-full object-cover brightness-80' />
           </motion.div>
 
           <motion.p

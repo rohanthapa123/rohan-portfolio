@@ -38,7 +38,7 @@ export const Footer = () => {
     { label: "Home", href: "/" },
     { label: "About Me", href: "/about" },
     { label: "Projects", href: "/projects" },
-    { label: "Connect", href: "/contact" },
+    { label: "Connect", href: "/connect" },
   ];
 
   const socialLinks = [

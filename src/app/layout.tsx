@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     siteName: "Rohan Thapa Portfolio",
     images: [
       {
-        url: "https://cdn.rohanthapa.com.np/1764439086608%20(1).jpg", // add an OG image for sharing
+        url: "https://cdn.rohanthapa.com.np/portfolio-og.jpg", // add an OG image for sharing
         width: 1200,
         height: 630,
         alt: "Rohan Thapa Portfolio Preview",
@@ -70,7 +70,7 @@ export const metadata: Metadata = {
     title: "Rohan Thapa | Full-Stack Developer & Tech Enthusiast",
     description:
       "Explore the portfolio of Rohan Thapa – Full-Stack Developer skilled in React, Next.js, Node.js, and more.",
-    images: ["https://cdn.rohanthapa.com.np/1764439086608%20(1).jpg"],
+    images: ["https://cdn.rohanthapa.com.np/portfolio-og.jpg"],
   },
   alternates: {
     canonical: "https://rohanthapa.com.np",
@@ -108,7 +108,7 @@ export default function RootLayout({
 
         <link
           rel="preload"
-          href="https://cdn.rohanthapa.com.np/1764439086608%20(1).jpg"
+          href="https://cdn.rohanthapa.com.np/portfolio-og.jpg"
           as="image"
           type="image/jpeg"
           crossOrigin=""
