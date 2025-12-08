@@ -1,11 +1,27 @@
-
-
 "use client";
 import { MaxWidthWrapper } from "../common/MaxWidthWrapper";
 import Image from "next/image";
 import { SpotlightGrid } from "../common/SpotlightGrid";
+import { AboutData } from "@/types/api";
 
-export const About = ({ pt }: { pt: string }) => {
+interface AboutProps {
+    pt: string;
+    data?: AboutData;
+}
+
+export const About = ({ pt, data }: AboutProps) => {
+    // Fallback data
+    const defaultData = {
+        title: "ABOUT ME",
+        description: "Hi!, I am Rohan Thapa. A curious developer who loves building creative web solutions. I enjoy experimenting with new tools, writing clean code, and turning ideas into interactive experiences that users enjoy.",
+        image1: "/works/edtraa.png",
+        image2: "/works/quasar.png",
+        image3: "/works/klixsoft.png",
+        image4: "/works/altripmart.png",
+    };
+
+    const displayData = data || defaultData;
+
     return (
         <section id="about-section" className={`pb-24 bg-black text-white relative group`} style={{
             paddingTop: pt
@@ -23,13 +39,12 @@ export const About = ({ pt }: { pt: string }) => {
 
                     >
                         <div className="flex items-baseline gap-4">
-
-                            <h2 className="text-7xl md:text-[8rem] leading-[0.8]  uppercase font-semibold tracking-tighter pointer-event-none">
-                                About Me
+                            <h2 className="text-7xl md:text-[8rem] leading-[0.8] uppercase font-semibold tracking-tighter pointer-event-none">
+                                {displayData.title}
                             </h2>
                         </div>
                         <p className="text-xl text-white/60 leading-relaxed max-w-md font-sans pl-6 pointer-event-none">
-                           Hi!, I am Rohan Thapa. A curious developer who loves building creative web solutions. I enjoy experimenting with new tools, writing clean code, and turning ideas into interactive experiences that users enjoy.
+                            {displayData.description}
                         </p>
                     </div>
 
@@ -38,7 +53,7 @@ export const About = ({ pt }: { pt: string }) => {
                         <div className="space-y-4">
                             <div className="relative h-64 w-full overflow-hidden grayscale hover:grayscale-0 transition-all duration-500">
                                 <Image
-                                    src="/works/edtraa.png"
+                                    src={displayData.image1}
                                     alt="About 1"
                                     fill
                                     className="object-cover"
@@ -46,7 +61,7 @@ export const About = ({ pt }: { pt: string }) => {
                             </div>
                             <div className="relative h-64 w-full overflow-hidden grayscale hover:grayscale-0 transition-all duration-500">
                                 <Image
-                                    src="/works/quasar.png"
+                                    src={displayData.image2}
                                     alt="About 2"
                                     fill
                                     className="object-cover"
@@ -56,7 +71,7 @@ export const About = ({ pt }: { pt: string }) => {
                         <div className="space-y-4 pt-12">
                             <div className="relative h-64 w-full overflow-hidden grayscale hover:grayscale-0 transition-all duration-500">
                                 <Image
-                                    src="/works/klixsoft.png"
+                                    src={displayData.image3}
                                     alt="About 3"
                                     fill
                                     className="object-cover"
@@ -64,7 +79,7 @@ export const About = ({ pt }: { pt: string }) => {
                             </div>
                             <div className="relative h-64 w-full overflow-hidden grayscale hover:grayscale-0 transition-all duration-500">
                                 <Image
-                                    src="/works/altripmart.png"
+                                    src={displayData.image4}
                                     alt="About 4"
                                     fill
                                     className="object-cover"

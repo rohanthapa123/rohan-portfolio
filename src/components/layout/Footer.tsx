@@ -140,10 +140,10 @@ export const Footer = () => {
           {/* Bottom footer bar */}
           <div className="flex flex-col md:flex-row items-center justify-between pointer-events-none gap-4 md:gap-0 pb-8 md:pb-0">
             <p className="w-fit hidden md:block">LOGO HERE</p>
-            <p className="flex items-center w-fit pointer-events-auto relative z-50">
+            <div className="flex items-center w-fit pointer-events-auto relative z-50">
               <WavyText text="Rohan Thapa" />
               &nbsp;&copy; {new Date().getFullYear()}
-            </p>
+            </div>
           </div>
         </div>
       </MaxWidthWrapper>

@@ -45,8 +45,9 @@ export const SmoothScrollProvider = ({ children }: { children: React.ReactNode }
         window.locoScroll = locomotiveScroll;
 
         // ✅ Sync ScrollTrigger with Locomotive Scroll v4
-        locomotiveScroll.on("scroll", () => {
+        locomotiveScroll.on("scroll", (args) => {
             ScrollTrigger.update();
+            window.locoScrollY = args.scroll.y;
         });
 
         ScrollTrigger.scrollerProxy(scrollRef.current, {

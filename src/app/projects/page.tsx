@@ -1,19 +1,11 @@
-"use client";
 import { Projects } from '@/components/Home/Projects';
 import React from 'react';
-import { motion } from 'framer-motion';
+import { getProjectsData } from '@/lib/api-server';
+import { ProjectsPageClient } from './ProjectsPageClient';
 
-const page = () => {
-  return (
-    <motion.div
-      className='bg-black '
-      initial={{ opacity: 0, y: 60 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
-    >
-      <Projects />
-    </motion.div>
-  );
-};
+export default async function ProjectsPage() {
+  // Fetch data server-side for SEO
+  const projectsData = await getProjectsData();
 
-export default page;
+  return <ProjectsPageClient projects={projectsData} />;
+}

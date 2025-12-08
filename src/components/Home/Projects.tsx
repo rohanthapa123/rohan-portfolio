@@ -1,27 +1,28 @@
 "use client";
 
-import { ArrowRight } from "lucide-react";
-import { MaxWidthWrapper } from "../common/MaxWidthWrapper";
-import { WavyText } from "../common/WavyText";
-import Link from "next/link";
-import Image from "next/image";
+import { ProjectData } from "@/types/api";
 import {
-  motion,
   AnimatePresence,
+  motion,
   useMotionValue,
   useSpring,
 } from "framer-motion";
-import { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ArrowRight } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
+import { MaxWidthWrapper } from "../common/MaxWidthWrapper";
+import { WavyText } from "../common/WavyText";
 
 gsap.registerPlugin(ScrollTrigger);
 
 // -------------------------------
-// 🔹 Project Data
+// 🔹 Project Data (Fallback)
 // -------------------------------
 export type Project = {
-  id: number;
+  id: string | number;
   title: string;
   role: string;
   link: string;
@@ -35,77 +36,7 @@ export const projectsData: Project[] = [
     role: "Full Stack Development",
     link: "https://www.edtraa.com",
     image: "/works/edtraa.png",
-  },
-  {
-    id: 2,
-    title: "Quasar Energy Consultant",
-    role: "Full Stack Development",
-    link: "https://quasar.rohanthapa.com.np",
-    image: "/works/quasar.png",
-  },
-  {
-    id: 3,
-    title: "Klixsoft",
-    role: "Frontend Development",
-    link: "https://klixsoft.com",
-    image: "/works/klixsoft.png",
-  },
-  {
-    id: 4,
-    title: "Altripmart",
-    role: "Frontend Development",
-    link: "https://altripmart.com",
-    image: "/works/altripmart.png",
-  },
-  {
-    id: 5,
-    title: "Portfolio Website",
-    role: "Frontend & Motion Design",
-    link: "#",
-    image: "/works/portfolio.png",
-  },
-  {
-    id: 6,
-    title: "Trexmin Advertisement",
-    role: "Frontend & Motion Design",
-    link: "https://trexmin.rohanthapa.com.np",
-    image: "/works/trexmin.png",
-  },
-  {
-    id: 7,
-    title: "Flex Fitness",
-    role: "Frontend Development",
-    link: "https://flex-fitness.rohanthapa.com.np",
-    image: "/works/flex-fitness.png",
-  },
-  {
-    id: 8,
-    title: "Ambassador Club Nepal",
-    role: "Frontend Development",
-    link: "http://ambassadorsclubnepal.com/",
-    image: "/works/ambassador.jpg",
-  },
-  {
-    id: 9,
-    title: "Dr. Shekhar Koirala",
-    role: "Fullstack Development",
-    link: "https://drshekharkoirala.com/homepage",
-    image: "/works/drshekhar.png",
-  },
-  {
-    id: 10,
-    title: "Aafnai Immigration",
-    role: "Frontend Development",
-    link: "https://www.aafnaai.com/",
-    image: "/works/aafnai.png",
-  },
-  {
-    id: 11,
-    title: "Public Affairs Nepal",
-    role: "Frontend Development",
-    link: "https://public-affairs.vercel.app/",
-    image: "/works/publicaffairs.png",
-  },
+  }
 ];
 
 // -------------------------------
@@ -114,10 +45,17 @@ export const projectsData: Project[] = [
 type ProjectsProps = {
   limit?: number;
   showViewAll?: boolean;
+  projects?: ProjectData[];
 };
 
-export const Projects = ({ limit, showViewAll = false }: ProjectsProps) => {
-  const [hovered, setHovered] = useState<number | null>(null);
+export const Projects = ({ limit, showViewAll = false, projects: serverProjects }: ProjectsProps) => {
+  const [hovered, setHovered] = useState<string | number | null>(null);
+
+  // Use server-provided data if available, otherwise fallback to static data
+  const allProjects = serverProjects && serverProjects.length > 0 ? serverProjects : projectsData;
+
+  const previewRef = useRef<HTMLDivElement | null>(null);
+
 
   // Smooth mouse-follow setup
   const x = useMotionValue(0);
@@ -127,43 +65,33 @@ export const Projects = ({ limit, showViewAll = false }: ProjectsProps) => {
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      const width = window.innerWidth;
-      const height = window.innerHeight;
+      if (!previewRef.current) return;
 
-      const imageHeight = 18 * 16; // 288px
-      const offset = 20;
+      const w = previewRef.current.clientWidth;
+      const h = previewRef.current.clientHeight;
 
-      let targetY = e.clientY - imageHeight / 2;
+      const mouseX = e.pageX;
+      const mouseY = e.pageY;
+      const scrollY = window.locoScrollY || 0;
 
-      // If hovering an element, make image stay above it
-      const hoveredEl = document.querySelector(`[data-hovered-id="${hovered}"]`) as HTMLElement | null;
-      if (hoveredEl) {
-        const rect = hoveredEl.getBoundingClientRect();
-        // Use the **cursor offset inside the element**
-        const cursorOffset = e.clientY - rect.top;
-        targetY = rect.top + cursorOffset - imageHeight / 2;
-      }
 
-      // Clamp to viewport
-      if (targetY < offset) targetY = offset;
-      else if (targetY + imageHeight > height - offset)
-        targetY = height - imageHeight - offset;
 
-      // Horizontal position
-      if (e.clientX > width / 2) x.set(width / 2 + 50);
-      else x.set(e.clientX + 60);
+      x.set(mouseX - (w / 2) - 40);
+      y.set(mouseY - h + scrollY);
 
-      y.set(targetY);
     };
 
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, [hovered, x, y]);
 
+
+    if (hovered) {
+      window.addEventListener("mousemove", handleMouseMove);
+    }
+
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, [hovered]);
 
   const svgContainerRef = useRef<HTMLDivElement | null>(null);
   const svgPathRef = useRef<SVGPathElement | null>(null);
-
 
   useEffect(() => {
     if (window.innerWidth < 768) return; // ❌ Skip for mobile
@@ -222,7 +150,12 @@ export const Projects = ({ limit, showViewAll = false }: ProjectsProps) => {
   }, [showViewAll]);
 
 
-  const displayedProjects = limit ? projectsData.slice(0, limit) : projectsData;
+  const displayedProjects = limit ? allProjects.slice(0, limit) : allProjects;
+
+  const hoveredProject = displayedProjects.find(
+    (p) => String(p.id) === String(hovered)
+  );
+
 
   return (
     <section className="relative text-white pt-48 pb-16 " data-scroll-section>
@@ -232,7 +165,7 @@ export const Projects = ({ limit, showViewAll = false }: ProjectsProps) => {
           {showViewAll && (
             <div ref={svgContainerRef} className="svg-container absolute top-[550px] -left-20" >
               <svg width="1955" height="312" viewBox="0 0 1955 312" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path ref={svgPathRef} d="M4.1853 9.62683C4.1853 9.62683 305.966 140.963 511.185 179.627C737.364 222.24 870.545 184.701 1100.19 200.127C1358.73 217.494 1504.52 226.411 1760.19 268.627C1830.09 280.17 1867.84 300.097 1938.69 301.127C1944.93 301.218 1954.69 301.127 1954.69 301.127" stroke="#DA70E8" stroke-width="21" strokeDashoffset={"0"} strokeDasharray={"0"} />
+                <path ref={svgPathRef} d="M4.1853 9.62683C4.1853 9.62683 305.966 140.963 511.185 179.627C737.364 222.24 870.545 184.701 1100.19 200.127C1358.73 217.494 1504.52 226.411 1760.19 268.627C1830.09 280.17 1867.84 300.097 1938.69 301.127C1944.93 301.218 1954.69 301.127 1954.69 301.127" stroke="#DA70E8" strokeWidth="21" strokeDashoffset={"0"} strokeDasharray={"0"} />
               </svg>
 
 
@@ -275,22 +208,23 @@ export const Projects = ({ limit, showViewAll = false }: ProjectsProps) => {
           )}
 
           {/* 🔸 Floating Preview Image */}
-          <div className="pointer-events-none fixed top-0 left-0 z-50 hidden md:block">
+          <div className="pointer-events-none absolute top-0 left-0 z-50 hidden md:block" data-scroll>
             <motion.div
               className="w-[28rem] h-[18rem] rounded-2xl overflow-hidden shadow-2xl"
               style={{
                 x: springX,
                 y: springY,
               }}
+              ref={previewRef}
               initial={{ opacity: 0, scale: 0.2 }}
               animate={{ opacity: hovered ? 1 : 0, scale: hovered ? 1 : 0.2 }}
               transition={{ duration: 0.3 }}
             >
-              <div className="relative w-full h-full">
+              <div className="relative w-full h-full z-[999]">
                 <AnimatePresence initial={false} mode="sync">
-                  {hovered && (
+                  {hoveredProject && (
                     <motion.div
-                      key={hovered}
+                      key={hoveredProject.id}
                       className="absolute inset-0 bg-white/60"
                       initial={{ y: 200, opacity: 0 }}
                       animate={{ y: 0, opacity: 1 }}
@@ -301,10 +235,8 @@ export const Projects = ({ limit, showViewAll = false }: ProjectsProps) => {
                       }}
                     >
                       <Image
-                        src={
-                          projectsData.find((p) => p.id === hovered)?.image || ""
-                        }
-                        alt="Project Preview"
+                        src={hoveredProject?.image || ""}
+                        alt={hoveredProject.title}
                         fill
                         className="object-contain rounded-2xl"
                         priority
