@@ -78,6 +78,34 @@ export const projectsData: Project[] = [
     link: "https://flex-fitness.rohanthapa.com.np",
     image: "/works/flex-fitness.png",
   },
+  {
+    id: 8,
+    title: "Ambassador Club Nepal",
+    role: "Frontend Development",
+    link: "http://ambassadorsclubnepal.com/",
+    image: "/works/ambassador.jpg",
+  },
+  {
+    id: 9,
+    title: "Dr. Shekhar Koirala",
+    role: "Fullstack Development",
+    link: "https://drshekharkoirala.com/homepage",
+    image: "/works/drshekhar.png",
+  },
+  {
+    id: 10,
+    title: "Aafnai Immigration",
+    role: "Frontend Development",
+    link: "https://www.aafnaai.com/",
+    image: "/works/aafnai.png",
+  },
+  {
+    id: 11,
+    title: "Public Affairs Nepal",
+    role: "Frontend Development",
+    link: "https://public-affairs.vercel.app/",
+    image: "/works/publicaffairs.png",
+  },
 ];
 
 // -------------------------------
