@@ -4,8 +4,11 @@ import { MaxWidthWrapper } from '../common/MaxWidthWrapper';
 import { PixelatedFace } from '../common/PixelatedImage';
 import { motion, Variants } from "framer-motion";
 import Image from 'next/image';
+import { ArrowDownToLine, Facebook, Github, Instagram, Linkedin } from 'lucide-react';
+import Link from 'next/link';
+import { ResumeData } from '@/types/api';
 
-export const Hero = () => {
+export const Hero = ({ resumeData }: { resumeData: ResumeData | undefined }) => {
   const rows = 58;
   const cols = 58;
   const total = rows * cols;
@@ -119,6 +122,26 @@ export const Hero = () => {
           >
             BUILDING BEAUTY WITH CODE
           </motion.p>
+
+          <motion.div variants={item} className='absolute top-[16rem] right-20 flex items-center gap-2 border-b border-b-white max-md:hidden pointer-events-auto cursor-pointer' onClick={() => window.open(resumeData?.pdfFile, '_blank')} >
+            <ArrowDownToLine color='white' className='size-4 md:size-5' strokeWidth={"1.4px"} />
+            <span className="text-white text-lg tracking-wide font-normal whitespace-nowrap">Download Resume</span>
+          </motion.div>
+
+          <motion.div className='text-white absolute max-md:right-6 md:left-4 top-[680px] md:top-[500px] z-80 pointer-events-auto md:space-y-4 max-md:flex items-center gap-3 max-md:hidden' variants={item}>
+            <Link target='_blank' href={"https://linkedin.com/in/rohanthapa"} className='border border-white p-2 rounded-full cursor-pointer block'>
+              <Linkedin color='white' className='size-4 md:size-5' strokeWidth={"1.4px"} />
+            </Link>
+            <Link target='_blank' href={"https://github.com/rohanthapa123"} className='border border-white p-2 rounded-full cursor-pointer block'>
+              <Github color='white' className='size-4 md:size-5' strokeWidth={"1.4px"} />
+            </Link>
+            <Link target='_blank' href={"https://instagram.com/rohanthapa.2"} className='border border-white p-2 rounded-full cursor-pointer block'>
+              <Instagram color='white' className='size-4 md:size-5' strokeWidth={"1.4px"} />
+            </Link>
+            <Link target='_blank' href={"https://facebook.com/rohanthapa69"} className='border border-white p-2 rounded-full cursor-pointer block'>
+              <Facebook color='white' className='size-4 md:size-5' strokeWidth={"1.4px"} />
+            </Link>
+          </motion.div>
 
 
         </motion.div>

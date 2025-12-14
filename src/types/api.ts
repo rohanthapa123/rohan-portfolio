@@ -22,3 +22,12 @@ export interface ProjectData {
     createdAt: string;
     updatedAt: string;
 }
+
+export interface ResumeData {
+    id: string;
+    title: string;
+    pdfFile: string;
+    isActive: boolean;
+    createdAt: string;
+    updatedAt: string;
+}

@@ -15,6 +15,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { MaxWidthWrapper } from "../common/MaxWidthWrapper";
 import { WavyText } from "../common/WavyText";
+import { usePathname } from "next/navigation";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -56,6 +57,8 @@ export const Projects = ({ limit, showViewAll = false, projects: serverProjects 
 
   const previewRef = useRef<HTMLDivElement | null>(null);
 
+  const pathname = usePathname();
+
 
   // Smooth mouse-follow setup
   const x = useMotionValue(0);
@@ -77,7 +80,11 @@ export const Projects = ({ limit, showViewAll = false, projects: serverProjects 
 
 
       x.set(mouseX - (w / 2) - 40);
-      y.set(mouseY - h + scrollY);
+      if (pathname === "/") {
+        y.set(mouseY - (h / 2) - 60);
+      } else {
+        y.set(mouseY - h + scrollY);
+      }
 
     };
 
@@ -163,7 +170,7 @@ export const Projects = ({ limit, showViewAll = false, projects: serverProjects 
 
         <div className="relative">
           {showViewAll && (
-            <div ref={svgContainerRef} className="svg-container absolute top-[550px] -left-20" >
+            <div ref={svgContainerRef} className="svg-container absolute top-[550px] -left-20 max-md:hidden" >
               <svg width="1955" height="312" viewBox="0 0 1955 312" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path ref={svgPathRef} d="M4.1853 9.62683C4.1853 9.62683 305.966 140.963 511.185 179.627C737.364 222.24 870.545 184.701 1100.19 200.127C1358.73 217.494 1504.52 226.411 1760.19 268.627C1830.09 280.17 1867.84 300.097 1938.69 301.127C1944.93 301.218 1954.69 301.127 1954.69 301.127" stroke="#DA70E8" strokeWidth="21" strokeDashoffset={"0"} strokeDasharray={"0"} />
               </svg>

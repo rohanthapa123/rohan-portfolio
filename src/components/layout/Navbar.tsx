@@ -1,6 +1,6 @@
 "use client";
 import { AnimatePresence, motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Facebook, Github, Instagram, Linkedin } from 'lucide-react';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { MaxWidthWrapper } from '../common/MaxWidthWrapper';
@@ -190,6 +190,22 @@ export const Navbar = () => {
                   </div>
                 </Link>
               </motion.div>
+
+              <motion.div className='text-white absolute max-md:right-6 top-[680px] left-1/2 -translate-x-1/2 z-80 max-md:flex items-center gap-3' initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4, duration: 0.5 }}>
+                <Link target='_blank' href={"https://linkedin.com/in/rohanthapa"} className=' bg-black p-2 rounded-full cursor-pointer block'>
+                  <Linkedin color='white' className='size-4 md:size-5' strokeWidth={"2px"} />
+                </Link>
+                <Link target='_blank' href={"https://github.com/rohanthapa123"} className=' bg-black p-2 rounded-full cursor-pointer block'>
+                  <Github color='white' className='size-4 md:size-5' strokeWidth={"2px"} />
+                </Link>
+                <Link target='_blank' href={"https://instagram.com/rohanthapa.2"} className=' bg-black p-2 rounded-full cursor-pointer block'>
+                  <Instagram color='white' className='size-4 md:size-5' strokeWidth={"2px"} />
+                </Link>
+                <Link target='_blank' href={"https://facebook.com/rohanthapa69"} className=' bg-black p-2 rounded-full cursor-pointer block'>
+                  <Facebook color='white' className='size-4 md:size-5' strokeWidth={"2px"} />
+                </Link>
+              </motion.div>
+
             </div>
           </motion.div>
         )}

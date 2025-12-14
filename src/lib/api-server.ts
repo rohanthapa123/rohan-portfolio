@@ -1,4 +1,4 @@
-import { AboutData, ProjectData } from '@/types/api';
+import { AboutData, ProjectData, ResumeData } from '@/types/api';
 
 // Fallback data for About section
 const defaultAboutData: AboutData = {
@@ -146,7 +146,7 @@ const defaultProjectsData: ProjectData[] = [
 export async function getAboutData(): Promise<AboutData> {
     try {
         const res = await fetch('https://portfolio.rohanthapa.com.np/about/active', {
-            next: { revalidate: 300 }, // Revalidate every 5 minutes
+            next: { revalidate: 60 }, // Revalidate every 5 minutes
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -172,7 +172,7 @@ export async function getAboutData(): Promise<AboutData> {
 export async function getProjectsData(): Promise<ProjectData[]> {
     try {
         const res = await fetch('https://portfolio.rohanthapa.com.np/projects/active', {
-            next: { revalidate: 300 }, // Revalidate every 5 minutes
+            next: { revalidate: 60 }, // Revalidate every 5 minutes
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -188,5 +188,26 @@ export async function getProjectsData(): Promise<ProjectData[]> {
     } catch (error) {
         console.error('Error fetching projects data:', error);
         return defaultProjectsData;
+    }
+}
+
+export async function getResumeData(): Promise<ResumeData | undefined> {
+    try {
+        const res = await fetch('https://portfolio.rohanthapa.com.np/resume/active', {
+            next: { revalidate: 60 }, // Revalidate every 5 minutes
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        if (!res.ok) {
+            console.warn(`Resume API returned ${res.status}, using fallback data`);
+
+        }
+
+        const data: ResumeData[] = await res.json();
+        return data[0];
+    } catch (error) {
+        console.error('Error fetching resume data:', error);
     }
 }
