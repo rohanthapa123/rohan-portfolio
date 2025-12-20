@@ -3,6 +3,7 @@ import { Hero } from "@/components/Home/Hero";
 import { Journey } from "@/components/Home/Journey";
 import { Projects } from "@/components/Home/Projects";
 import { getAboutData, getProjectsData, getResumeData } from "@/lib/api-server";
+import SnowfallWrapper from "@/components/ui/SnowfallWrapper";
 
 
 export const runtime = 'edge'
@@ -19,6 +20,7 @@ export default async function Home() {
 
   return (
     <div className="w-full relative ">
+      <SnowfallWrapper color="#64748b" snowflakeCount={50} />
       <Hero resumeData={resumeData} />
       <About pt="124px" data={aboutData} />
       <Projects limit={4} showViewAll={true} projects={projectsData} />

@@ -11,6 +11,7 @@ import { motion, Variants } from "framer-motion";
 import axios from "axios";
 import { toast } from "sonner";
 import Link from "next/link";
+import SnowfallWrapper from "@/components/ui/SnowfallWrapper";
 
 const contactSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -70,6 +71,7 @@ export default function ConnectPage() {
 
   return (
     <div className="bg-black text-white relative pt-[10rem] pb-12" data-scroll-section>
+      <SnowfallWrapper color="#64748b" snowflakeCount={50} />
       <div className="hidden md:block">
         <SpotlightGrid />
       </div>

@@ -3,6 +3,7 @@ import { Projects } from '@/components/Home/Projects';
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ProjectData } from '@/types/api';
+import SnowfallWrapper from '@/components/ui/SnowfallWrapper';
 
 interface ProjectsPageClientProps {
     projects: ProjectData[];
@@ -16,6 +17,7 @@ export function ProjectsPageClient({ projects }: ProjectsPageClientProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
         >
+            <SnowfallWrapper color="#64748b" snowflakeCount={50} />
             <Projects projects={projects} />
         </motion.div>
     );
