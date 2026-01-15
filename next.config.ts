@@ -10,6 +10,18 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async rewrites(){
+    return [
+      {
+        source: '/blogs',
+        destination: 'https://blog-website-mocha-pi.vercel.app/blogs'
+      },
+      {
+        source: '/blog/:path*',
+        destination: 'https://blog-website-mocha-pi.vercel.app/blog/:path*'
+      },
+    ]
+  }
 };
 
 export default nextConfig;
