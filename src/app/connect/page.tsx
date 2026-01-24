@@ -58,7 +58,7 @@ export default function ConnectPage() {
       });
     },
     onError: (error) => {
-      console.error("Error sending message:", error);
+      // console.error("Error sending message:", error);
       toast.error("Failed to send message", {
         description: "Please try again later or contact me directly via email.",
       });

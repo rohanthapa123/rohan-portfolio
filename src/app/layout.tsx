@@ -21,13 +21,17 @@ const fira_code = Fira_Code({
 export const metadata: Metadata = {
   metadataBase: new URL("https://rohanthapa.com.np"), // replace with your real domain
   title: {
-    default: "Rohan Thapa | Full-Stack Developer & Tech Enthusiast",
+    default: "Rohan Thapa | Software Engineer (Full-Stack) in Kathmandu, Nepal",
     template: "%s | Rohan Thapa",
   },
   description:
-    "Portfolio of Rohan Thapa – Full-Stack Developer skilled in React, Next.js, Node.js, TypeORM, MongoDB, and more. Explore my projects, blogs, notes, and experience.",
+    "Rohan Thapa is a software engineer in Kathmandu, Nepal. Full-stack developer specializing in React, Next.js, Node.js, TypeScript, and Java. View projects, blogs, and contact details.",
   keywords: [
     "Rohan Thapa",
+    "Software Engineer",
+    "Kathmandu Nepal Developer",
+    "Nepal",
+    "Nepali",
     "Full Stack Developer",
     "React Developer",
     "Next.js Developer",
@@ -39,7 +43,6 @@ export const metadata: Metadata = {
     "Portfolio",
     "Projects",
     "Blogs",
-    "Kathmandu Nepal Developer",
   ],
   authors: [{ name: "Rohan Thapa", url: "https://rohanthapa.com.np" }],
   creator: "Rohan Thapa",
@@ -50,9 +53,9 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://rohanthapa.com.np",
-    title: "Rohan Thapa | Full-Stack Developer & Tech Enthusiast",
+    title: "Rohan Thapa | Software Engineer (Full-Stack) in Kathmandu, Nepal",
     description:
-      "Welcome to my portfolio website. I build scalable full-stack applications using React, Next.js, Node.js, and Java. Explore my projects, skills, blogs, and notes.",
+      "Rohan Thapa is a software engineer in Kathmandu, Nepal. Full-stack developer specializing in React, Next.js, Node.js, TypeScript, and Java. View projects, blogs, and contact details.",
     siteName: "Rohan Thapa Portfolio",
     images: [
       {
@@ -67,9 +70,9 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: "@yourtwitterhandle", // replace with your Twitter if any
     creator: "@yourtwitterhandle",
-    title: "Rohan Thapa | Full-Stack Developer & Tech Enthusiast",
+    title: "Rohan Thapa | Software Engineer (Full-Stack) in Kathmandu, Nepal",
     description:
-      "Explore the portfolio of Rohan Thapa – Full-Stack Developer skilled in React, Next.js, Node.js, and more.",
+      "Rohan Thapa is a software engineer in Kathmandu, Nepal. Full-stack developer specializing in React, Next.js, Node.js, TypeScript, and Java. View projects, blogs, and contact details.",
     images: ["https://cdn.rohanthapa.com.np/portfolio-og.jpg"],
   },
   alternates: {
@@ -100,56 +103,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <link
-          rel="preload"
-          href="/fonts/HelveticaCondensed.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin=""
-        />
-
-        <link
-          rel="preload"
-          href="https://cdn.rohanthapa.com.np/portfolio-og.jpg"
-          as="image"
-          type="image/jpeg"
-          crossOrigin=""
-        />
-
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-        <link rel="manifest" href="/site.webmanifest" />
-
-
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org/",
-              "@type": "Person",
-              "name": "Rohan Thapa",
-              "url": "https://rohanthapa.com.np",
-              "image": "https://cdn.rohanthapa.com.np/portfolio-og.jpg",
-              "jobTitle": "Full Stack Developer",
-              "address": {
-                "@type": "PostalAddress",
-                "addressLocality": "Kathmandu",
-                "addressCountry": "Nepal"
-              },
-              "sameAs": [
-                "https://www.linkedin.com/in/rohanthapa",
-                "https://www.instagram.com/rohanthapa.2",
-                "https://www.facebook.com/rohanthapa69"
-              ]
-            }),
-          }}
-        />
-
-
-
-      </head>
       <body
         className={`${roboto.variable} ${fira_code.variable} antialiased`}
       >

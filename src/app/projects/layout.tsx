@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-    title: "Projects",
+    title: "Projects | Rohan Thapa",
     description: "Explore the portfolio of projects by Rohan Thapa. From full-stack web applications to innovative solutions using React, Next.js, Node.js, TypeScript, MongoDB, and more. See real-world implementations and case studies.",
     keywords: [
         "Rohan Thapa Projects",
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
         "Open Source Projects",
     ],
     openGraph: {
-        title: "Projects by Rohan Thapa | Full-Stack Developer Portfolio",
+        title: "Projects by Rohan Thapa | Software Engineer Portfolio",
         description: "Browse through my collection of full-stack web applications and projects. Built with React, Next.js, Node.js, TypeScript, and modern web technologies.",
         url: "https://rohanthapa.com.np/projects",
         type: "website",
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     },
     twitter: {
         card: "summary_large_image",
-        title: "Projects by Rohan Thapa | Full-Stack Developer",
+        title: "Projects by Rohan Thapa | Software Engineer",
         description: "Explore my portfolio of full-stack web applications built with React, Next.js, Node.js, and modern technologies.",
         images: ["https://cdn.rohanthapa.com.np/portfolio-og.jpg"],
     },

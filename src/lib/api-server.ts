@@ -153,14 +153,14 @@ export async function getAboutData(): Promise<AboutData> {
         });
 
         if (!res.ok) {
-            console.warn(`About API returned ${res.status}, using fallback data`);
+            // console.warn(`About API returned ${res.status}, using fallback data`);
             return defaultAboutData;
         }
 
         const data: AboutData[] = await res.json();
         return data[0] || defaultAboutData;
     } catch (error) {
-        console.error('Error fetching about data:', error);
+        // console.error('Error fetching about data:', error);
         return defaultAboutData;
     }
 }
@@ -179,14 +179,14 @@ export async function getProjectsData(): Promise<ProjectData[]> {
         });
 
         if (!res.ok) {
-            console.warn(`Projects API returned ${res.status}, using fallback data`);
+            // console.warn(`Projects API returned ${res.status}, using fallback data`);
             return defaultProjectsData;
         }
 
         const data: ProjectData[] = await res.json();
         return data.filter(project => project.isActive);
     } catch (error) {
-        console.error('Error fetching projects data:', error);
+        // console.error('Error fetching projects data:', error);
         return defaultProjectsData;
     }
 }
@@ -201,13 +201,13 @@ export async function getResumeData(): Promise<ResumeData | undefined> {
         });
 
         if (!res.ok) {
-            console.warn(`Resume API returned ${res.status}, using fallback data`);
+            // console.warn(`Resume API returned ${res.status}, using fallback data`);
 
         }
 
         const data: ResumeData[] = await res.json();
         return data[0];
     } catch (error) {
-        console.error('Error fetching resume data:', error);
+        // console.error('Error fetching resume data:', error);
     }
 }

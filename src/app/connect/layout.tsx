@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-    title: "Connect",
+    title: "Connect | Rohan Thapa",
     description: "Get in touch with Rohan Thapa for collaboration, project inquiries, or just to say hello. I'm always open to discussing new opportunities, creative ideas, and innovative projects. Contact me via email or social media.",
     keywords: [
         "Contact Rohan Thapa",
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     },
     twitter: {
         card: "summary_large_image",
-        title: "Connect with Rohan Thapa | Full-Stack Developer",
+        title: "Connect with Rohan Thapa | Software Engineer",
         description: "Let's collaborate on your next project. Get in touch for web development opportunities and creative partnerships.",
         images: ["https://cdn.rohanthapa.com.np/portfolio-og.jpg"],
     },

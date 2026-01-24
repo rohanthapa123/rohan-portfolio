@@ -96,17 +96,17 @@ export const Hero = ({ resumeData }: { resumeData: ResumeData | undefined }) => 
           transition={{ delay: 0.8 }}
         >
           <motion.div
-            className="absolute w-[17rem] md:w-[20.5rem] h-[22rem] md:h-[27.5rem] top-[35%] md:top-[20%] right-[55%] md:right-[48%] transform translate-x-1/2 bg-slate-800 pointer-event-none -z-10"
+            className="absolute w-[17rem] md:w-[20.5rem] h-[22rem] md:h-[27.5rem] top-[35%] md:top-[20%] right-[55%] md:right-[48%] transform translate-x-1/2 bg-slate-800 pointer-events-none -z-10"
             variants={item}
           >
-            <Image src={"https://cdn.rohanthapa.com.np/portfolio-og.jpg"} width={500} height={500} alt='Professional profile photo of Rohan Thapa, developer from Kathmandu.' className='w-full h-full object-cover brightness-80' />
+            <Image src={"https://cdn.rohanthapa.com.np/portfolio-og.jpg"} width={500} height={500} alt='Rohan Thapa, software engineer based in Kathmandu, Nepal.' className='w-full h-full object-cover brightness-80' priority />
           </motion.div>
 
           <motion.p
             className="text-white text-lg tracking-tighter font-normal whitespace-nowrap relative -bottom-12  md:-right-[.875rem]"
             variants={item}
           >
-            NEPAL
+            KATHMANDU, NEPAL
           </motion.p>
 
           <motion.p
