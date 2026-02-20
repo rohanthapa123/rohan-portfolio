@@ -9,6 +9,7 @@ const nextConfig: NextConfig = {
         hostname: "cdn.rohanthapa.com.np",
       },
     ],
+    unoptimized: true,
   },
   // async rewrites(){
   //   return [
