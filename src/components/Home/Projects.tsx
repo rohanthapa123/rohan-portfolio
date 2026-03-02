@@ -247,6 +247,7 @@ export const Projects = ({ limit, showViewAll = false, projects: serverProjects 
                         fill
                         className="object-contain rounded-2xl"
                         priority
+                        loading="eager"
                       />
                     </motion.div>
                   )}

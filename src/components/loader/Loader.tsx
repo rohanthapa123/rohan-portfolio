@@ -62,7 +62,7 @@ export const Loader = ({ progress }: LoaderProps) => {
                   initial={{ y: "100%" }}
                   animate={{ y: 0 }}
                   exit={{ y: "-100%" }}
-                  transition={{ duration: 0.5, ease: [0.85, 0, 0.15, 1] }} // circInOut
+                  transition={{ duration: 0.3, ease: [0.85, 0, 0.15, 1] }} // circInOut
                   className="text-black text-[6rem] md:text-[12.5rem] font-extrabold  tracking-tighter md:tracking-tight absolute"
                 >
                   {digit}

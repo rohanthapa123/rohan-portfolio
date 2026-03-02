@@ -26,7 +26,7 @@ export const LoaderWrapper = ({ children }: { children: React.ReactNode }) => {
         const jump = Math.floor(Math.random() * 10) + 10;
         return Math.min(prev + jump, 99);
       });
-    }, 700);
+    }, 300);
 
     return () => clearInterval(interval);
   }, []);
