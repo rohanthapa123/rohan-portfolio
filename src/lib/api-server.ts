@@ -49,8 +49,9 @@ const defaultProjectsData: ProjectData[] = [
 export const getAboutData = unstable_cache(
     async (): Promise<AboutData> => {
         try {
-            const { data } = await apiClient.get<AboutData[]>('/about/active');
-            return data[0] || defaultAboutData;
+            const { data } = await apiClient.get<any>('/about/active');
+            const items = Array.isArray(data) ? data : data.data;
+            return items?.[0] || defaultAboutData;
         } catch (error) {
             // console.error('Error fetching about data:', error);
             return defaultAboutData;
@@ -67,8 +68,9 @@ export const getAboutData = unstable_cache(
 export const getProjectsData = unstable_cache(
     async (): Promise<ProjectData[]> => {
         try {
-            const { data } = await apiClient.get<ProjectData[]>('/projects/active');
-            return data.filter(project => project.isActive);
+            const { data } = await apiClient.get<any>('/projects/active');
+            const items = Array.isArray(data) ? data : data.data;
+            return (items || []).filter((project: any) => project.isActive);
         } catch (error) {
             // console.error('Error fetching projects data:', error);
             return defaultProjectsData;
@@ -84,8 +86,9 @@ export const getProjectsData = unstable_cache(
 export const getResumeData = unstable_cache(
     async (): Promise<ResumeData | undefined> => {
         try {
-            const { data } = await apiClient.get<ResumeData[]>('/resume/active');
-            return data[0];
+            const { data } = await apiClient.get<any>('/resume/active');
+            const items = Array.isArray(data) ? data : data.data;
+            return items?.[0];
         } catch (error) {
             // console.error('Error fetching resume data:', error);
             return undefined;
@@ -94,4 +97,5 @@ export const getResumeData = unstable_cache(
     ['resume-data'],
     { revalidate: 60 }
 );
+
 

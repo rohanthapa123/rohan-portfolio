@@ -12,11 +12,13 @@ export const revalidate = 60;
 
 export default async function Home() {
   // Fetch data server-side for SEO
+
   const [aboutData, projectsData, resumeData] = await Promise.all([
     getAboutData(),
     getProjectsData(),
     getResumeData(),
   ]);
+
 
   return (
     <div className="w-full relative ">

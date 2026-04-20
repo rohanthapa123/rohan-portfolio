@@ -11,5 +11,6 @@ export default async function AboutPage() {
   // Fetch data server-side for SEO
   const aboutData = await getAboutData();
 
+
   return <AboutPageClient data={aboutData} />;
 }
