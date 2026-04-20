@@ -85,12 +85,12 @@ export const About = ({ pt, data }: AboutProps) => {
                         {/* Interactive Grid Overlay */}
                         <div className="absolute inset-0 z-10 grid grid-cols-2 gap-4">
                             <div className="space-y-4 h-full">
-                                <div className=" bg-red-500 w-full backdrop-grayscale hover:backdrop-grayscale-0 transition-all duration-500 cursor-crosshair"></div>
-                                <div className=" bg-red-500 w-full backdrop-grayscale hover:backdrop-grayscale-0 transition-all duration-500 cursor-crosshair"></div>
+                                <div className="h-[45%]  w-full backdrop-grayscale hover:backdrop-grayscale-0 transition-all duration-500 cursor-crosshair"></div>
+                                <div className="h-[45%]  w-full backdrop-grayscale hover:backdrop-grayscale-0 transition-all duration-500 cursor-crosshair"></div>
                             </div>
                             <div className="space-y-4 pt-12 h-full">
-                                <div className=" bg-red-500 w-full backdrop-grayscale hover:backdrop-grayscale-0 transition-all duration-500 cursor-crosshair"></div>
-                                <div className=" bg-red-500 w-full backdrop-grayscale hover:backdrop-grayscale-0 transition-all duration-500 cursor-crosshair"></div>
+                                <div className="h-[48%]  w-full backdrop-grayscale hover:backdrop-grayscale-0 transition-all duration-500 cursor-crosshair"></div>
+                                <div className="h-[45%]  w-full backdrop-grayscale hover:backdrop-grayscale-0 transition-all duration-500 cursor-crosshair"></div>
                             </div>
                         </div>
                     </div>
