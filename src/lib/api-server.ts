@@ -1,4 +1,6 @@
 import { AboutData, ProjectData, ResumeData } from '@/types/api';
+import { apiClient } from '@/lib/api';
+import { unstable_cache } from 'next/cache';
 
 // Fallback data for About section
 const defaultAboutData: AboutData = {
@@ -38,176 +40,58 @@ const defaultProjectsData: ProjectData[] = [
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),
     },
-    {
-        id: "3",
-        title: "Klixsoft",
-        role: "Frontend Development",
-        link: "https://klixsoft.com",
-        image: "/works/klixsoft.png",
-        isActive: true,
-        workedAt: "Klixsoft",
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
-    },
-    {
-        id: "4",
-        title: "Altripmart",
-        role: "Frontend Development",
-        link: "https://altripmart.com",
-        image: "/works/altripmart.png",
-        isActive: true,
-        workedAt: "Altripmart",
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
-    },
-    {
-        id: "5",
-        title: "Portfolio Website",
-        role: "Frontend & Motion Design",
-        link: "#",
-        image: "/works/portfolio.png",
-        isActive: true,
-        workedAt: "Personal",
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
-    },
-    {
-        id: "6",
-        title: "Trexmin Advertisement",
-        role: "Frontend & Motion Design",
-        link: "https://trexmin.rohanthapa.com.np",
-        image: "/works/trexmin.png",
-        isActive: true,
-        workedAt: "Trexmin",
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
-    },
-    {
-        id: "7",
-        title: "Flex Fitness",
-        role: "Frontend Development",
-        link: "https://flex-fitness.rohanthapa.com.np",
-        image: "/works/flex-fitness.png",
-        isActive: true,
-        workedAt: "Flex Fitness",
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
-    },
-    {
-        id: "8",
-        title: "Ambassador Club Nepal",
-        role: "Frontend Development",
-        link: "http://ambassadorsclubnepal.com/",
-        image: "/works/ambassador.jpg",
-        isActive: true,
-        workedAt: "Ambassador Club",
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
-    },
-    {
-        id: "9",
-        title: "Dr. Shekhar Koirala",
-        role: "Fullstack Development",
-        link: "https://drshekharkoirala.com/homepage",
-        image: "/works/drshekhar.png",
-        isActive: true,
-        workedAt: "Dr. Shekhar",
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
-    },
-    {
-        id: "10",
-        title: "Aafnai Immigration",
-        role: "Frontend Development",
-        link: "https://www.aafnaai.com/",
-        image: "/works/aafnai.png",
-        isActive: true,
-        workedAt: "Aafnai",
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
-    },
-    {
-        id: "11",
-        title: "Public Affairs Nepal",
-        role: "Frontend Development",
-        link: "https://public-affairs.vercel.app/",
-        image: "/works/publicaffairs.png",
-        isActive: true,
-        workedAt: "Public Affairs",
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
-    },
 ];
 
 /**
  * Fetches About data from the API (server-side only)
  * Falls back to default data if API call fails
  */
-export async function getAboutData(): Promise<AboutData> {
-    try {
-        const res = await fetch('https://portfolio.rohanthapa.com.np/about/active', {
-            next: { revalidate: 60 }, // Revalidate every 5 minutes
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
-
-        if (!res.ok) {
-            // console.warn(`About API returned ${res.status}, using fallback data`);
+export const getAboutData = unstable_cache(
+    async (): Promise<AboutData> => {
+        try {
+            const { data } = await apiClient.get<AboutData[]>('/about/active');
+            return data[0] || defaultAboutData;
+        } catch (error) {
+            // console.error('Error fetching about data:', error);
             return defaultAboutData;
         }
-
-        const data: AboutData[] = await res.json();
-        return data[0] || defaultAboutData;
-    } catch (error) {
-        // console.error('Error fetching about data:', error);
-        return defaultAboutData;
-    }
-}
+    },
+    ['about-data'],
+    { revalidate: 10 }
+);
 
 /**
  * Fetches Projects data from the API (server-side only)
  * Falls back to default data if API call fails
  */
-export async function getProjectsData(): Promise<ProjectData[]> {
-    try {
-        const res = await fetch('https://portfolio.rohanthapa.com.np/projects/active', {
-            next: { revalidate: 60 }, // Revalidate every 5 minutes
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
-
-        if (!res.ok) {
-            // console.warn(`Projects API returned ${res.status}, using fallback data`);
+export const getProjectsData = unstable_cache(
+    async (): Promise<ProjectData[]> => {
+        try {
+            const { data } = await apiClient.get<ProjectData[]>('/projects/active');
+            return data.filter(project => project.isActive);
+        } catch (error) {
+            // console.error('Error fetching projects data:', error);
             return defaultProjectsData;
         }
+    },
+    ['projects-data'],
+    { revalidate: 60 }
+);
 
-        const data: ProjectData[] = await res.json();
-        return data.filter(project => project.isActive);
-    } catch (error) {
-        // console.error('Error fetching projects data:', error);
-        return defaultProjectsData;
-    }
-}
-
-export async function getResumeData(): Promise<ResumeData | undefined> {
-    try {
-        const res = await fetch('https://portfolio.rohanthapa.com.np/resume/active', {
-            next: { revalidate: 60 }, // Revalidate every 5 minutes
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
-
-        if (!res.ok) {
-            // console.warn(`Resume API returned ${res.status}, using fallback data`);
-
+/**
+ * Fetches Resume data from the API (server-side only)
+ */
+export const getResumeData = unstable_cache(
+    async (): Promise<ResumeData | undefined> => {
+        try {
+            const { data } = await apiClient.get<ResumeData[]>('/resume/active');
+            return data[0];
+        } catch (error) {
+            // console.error('Error fetching resume data:', error);
+            return undefined;
         }
+    },
+    ['resume-data'],
+    { revalidate: 60 }
+);
 
-        const data: ResumeData[] = await res.json();
-        return data[0];
-    } catch (error) {
-        // console.error('Error fetching resume data:', error);
-    }
-}
