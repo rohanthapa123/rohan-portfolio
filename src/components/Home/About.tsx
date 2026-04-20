@@ -48,42 +48,49 @@ export const About = ({ pt, data }: AboutProps) => {
                         </p>
                     </div>
 
-                    {/* Right Column - Masonry Grid */}
-                    <div className="grid grid-cols-2 gap-4">
-                        <div className="space-y-4">
-                            <div className="relative h-64 w-full overflow-hidden grayscale hover:grayscale-0 transition-all duration-500">
-                                <Image
-                                    src={displayData.image1}
-                                    alt="About 1"
-                                    fill
-                                    className="object-cover"
-                                />
-                            </div>
-                            <div className="relative h-64 w-full overflow-hidden grayscale hover:grayscale-0 transition-all duration-500">
-                                <Image
-                                    src={displayData.image2}
-                                    alt="About 2"
-                                    fill
-                                    className="object-cover"
-                                />
-                            </div>
+                    {/* Right Column - Single Image Masked Grid */}
+                    <div className="relative h-[590px] lg:h-[700px] w-full group/main">
+                        {/* The Single Image (Color by default, visible through mask) */}
+                        <div 
+                            className="absolute inset-0 z-0"
+                            style={{
+                                maskImage: `
+                                    linear-gradient(black, black), 
+                                    linear-gradient(black, black), 
+                                    linear-gradient(black, black), 
+                                    linear-gradient(black, black)
+                                `,
+                                maskSize: 'calc(50% - 0.5rem) calc(50% - 2rem)',
+                                maskPosition: '0% 0%, 0% 100%, 100% 13%, 100% 100%',
+                                maskRepeat: 'no-repeat',
+                                WebkitMaskImage: `
+                                    linear-gradient(black, black), 
+                                    linear-gradient(black, black), 
+                                    linear-gradient(black, black), 
+                                    linear-gradient(black, black)
+                                `,
+                                WebkitMaskSize: 'calc(50% - 0.5rem) calc(50% - 2rem)',
+                                WebkitMaskPosition: '0% 1%, 0% 86%, 100% 15%, 100% 100%',
+                                WebkitMaskRepeat: 'no-repeat',
+                            }}
+                        >
+                            <Image
+                                src={displayData.image4}
+                                alt="About Background"
+                                fill
+                                className="object-cover"
+                            />
                         </div>
-                        <div className="space-y-4 pt-12">
-                            <div className="relative h-64 w-full overflow-hidden grayscale hover:grayscale-0 transition-all duration-500">
-                                <Image
-                                    src={displayData.image3}
-                                    alt="About 3"
-                                    fill
-                                    className="object-cover"
-                                />
+
+                        {/* Interactive Grid Overlay */}
+                        <div className="absolute inset-0 z-10 grid grid-cols-2 gap-4">
+                            <div className="space-y-4 h-full">
+                                <div className=" bg-red-500 w-full backdrop-grayscale hover:backdrop-grayscale-0 transition-all duration-500 cursor-crosshair"></div>
+                                <div className=" bg-red-500 w-full backdrop-grayscale hover:backdrop-grayscale-0 transition-all duration-500 cursor-crosshair"></div>
                             </div>
-                            <div className="relative h-64 w-full overflow-hidden grayscale hover:grayscale-0 transition-all duration-500">
-                                <Image
-                                    src={displayData.image4}
-                                    alt="About 4"
-                                    fill
-                                    className="object-cover"
-                                />
+                            <div className="space-y-4 pt-12 h-full">
+                                <div className=" bg-red-500 w-full backdrop-grayscale hover:backdrop-grayscale-0 transition-all duration-500 cursor-crosshair"></div>
+                                <div className=" bg-red-500 w-full backdrop-grayscale hover:backdrop-grayscale-0 transition-all duration-500 cursor-crosshair"></div>
                             </div>
                         </div>
                     </div>
