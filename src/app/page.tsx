@@ -4,6 +4,7 @@ import { Journey } from "@/components/Home/Journey";
 import { Projects } from "@/components/Home/Projects";
 import { getAboutData, getProjectsData, getResumeData } from "@/lib/api-server";
 import SnowfallWrapper from "@/components/ui/SnowfallWrapper";
+import { MobileResumeButton } from "@/components/common/MobileResumeButton";
 
 
 export const runtime = 'edge'
@@ -27,6 +28,7 @@ export default async function Home() {
       <About pt="124px" data={aboutData} />
       <Projects limit={4} showViewAll={true} projects={projectsData} />
       <Journey />
+      <MobileResumeButton url={resumeData?.pdfFile} />
     </div>
   );
 }
