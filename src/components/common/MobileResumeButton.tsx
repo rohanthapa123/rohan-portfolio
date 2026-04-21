@@ -2,21 +2,29 @@
 
 import { Download } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 
 interface MobileResumeButtonProps {
   url?: string;
 }
 
 export const MobileResumeButton = ({ url }: MobileResumeButtonProps) => {
-  if (!url) return null;
+  const [mounted, setMounted] = useState(false);
 
-  return (
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!url || !mounted) return null;
+
+  return createPortal(
     <AnimatePresence>
       <motion.div
         initial={{ scale: 0, opacity: 0, y: 20 }}
         animate={{ scale: 1, opacity: 1, y: 0 }}
         exit={{ scale: 0, opacity: 0, y: 20 }}
-        className="fixed top-[86vh] right-10 z-[999] md:hidden"
+        className="fixed bottom-10 right-10 z-[9999] md:hidden"
       >
         <div className="relative flex items-center justify-center">
           {/* Curved Rotating Text */}
@@ -51,6 +59,7 @@ export const MobileResumeButton = ({ url }: MobileResumeButtonProps) => {
           </button>
         </div>
       </motion.div>
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body
   );
 };
